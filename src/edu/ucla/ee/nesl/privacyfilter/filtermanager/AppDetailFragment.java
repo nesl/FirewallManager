@@ -4,11 +4,8 @@ package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-//import android.os.Parcel;
-//import android.os.Parcelable;
+import java.util.List;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
@@ -20,32 +17,22 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.SeekBar;
 import android.widget.Button;
 import android.text.method.DigitsKeyListener;
-
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
-
 import android.util.Base64;
-
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
-
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.AppFilterData;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.AppId;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.InferenceMethod;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.Inference;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.SensorType;
-
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.algo.InferenceSensorMapper;
-
-import com.google.protobuf.*;
 import android.os.FirewallConfigManager;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessage;
 // }}}
@@ -57,8 +44,16 @@ import edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMe
  * on handsets.
  */
 public class AppDetailFragment extends Fragment {
+	private Context context;
 	// Android boilerplate {{{
 
+	public Context getContext() {
+		return context;
+	}
+
+	public void setContext(Context context) {
+		this.context = context;
+	}
 	/**
 	 * The fragment argument representing the app ID that this fragment
 	 * represents.
@@ -163,6 +158,9 @@ public class AppDetailFragment extends Fragment {
 		private TextView toHourView;
 		private TextView fromMinuteView;
 		private TextView toMinuteView;
+		
+		private ViewGroup locationView;
+		private Spinner radiusSpinner, tagSpinner;
 
 		// }}}
 
@@ -215,18 +213,21 @@ public class AppDetailFragment extends Fragment {
 					//delayView.setVisibility(View.GONE);
 					perturbView.setVisibility(View.GONE);
 					timingView.setVisibility(View.GONE);
+					locationView.setVisibility(View.GONE);
 
 					switch (position) {
 						case 0: // no action
 							break;
 						case 1: // suppress
 							timingView.setVisibility(View.VISIBLE);
+							locationView.setVisibility(View.VISIBLE);
 							break;
 						case 2: // constant
 							for (int constIdx = 0; constIdx < MAX_CONSTANTS && constIdx < sensorType.getAndroidValueNames().length; constIdx++) {
 								constantViews[constIdx].setVisibility(View.VISIBLE);
 							}
 							timingView.setVisibility(View.VISIBLE);
+							locationView.setVisibility(View.VISIBLE);
 							break;
 						//case 3: // delay
 						//	delayView.setVisibility(View.VISIBLE);
@@ -239,6 +240,7 @@ public class AppDetailFragment extends Fragment {
 						case 3: // perturb
 							perturbView.setVisibility(View.VISIBLE);
 							timingView.setVisibility(View.VISIBLE);
+							locationView.setVisibility(View.VISIBLE);
 							break;
 					}
 				}
@@ -247,6 +249,31 @@ public class AppDetailFragment extends Fragment {
 				}
 			});
 		} // }}}
+		
+		private void setUpLocationSpinner() {
+			List<String> list = new ArrayList<String>();
+			list.add("None");
+			list.add("100ft");
+			list.add("1000ft");
+			list.add("1mile");
+			list.add("5mile");
+			
+			List<String> listloc = new ArrayList<String>();
+			listloc.add("None");
+			listloc.add("Home");
+			listloc.add("Work");
+			listloc.add("Grocery");
+			listloc.add("Hospital");
+			
+			
+			if (context != null) {
+				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, list);
+				radiusSpinner.setAdapter(dataAdapter);
+				
+				ArrayAdapter<String> dataAdapterLoc = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, listloc);
+				tagSpinner.setAdapter(dataAdapterLoc);
+			}
+		}
 
 		protected void setView (View ruleView) { // {{{
 			this.ruleView = ruleView;
@@ -324,7 +351,11 @@ public class AppDetailFragment extends Fragment {
 			toHourView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_tohour);
 			fromMinuteView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_fromminutes);
 			toMinuteView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_tominutes);
-
+			
+			locationView = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_location);
+			radiusSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_location_spinner_radius);
+			tagSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_location_spinner_tag);
+			setUpLocationSpinner();
 			// }}}
 
 			setupActionSpinner();
@@ -654,15 +685,9 @@ public class AppDetailFragment extends Fragment {
 	// }}}
 
 	private AppFilterData app; // the app whose privacy settings we're configuring on this screen
-
 	private View rootView;
-
-	private ViewGroup sensorViews; // the view containing the sensors
 	private ArrayList<SensorTypeRule> sensorRules = new ArrayList<SensorTypeRule>();
-
-	private ViewGroup inferenceViews; // the view containing the inferences
 	private ArrayList<InferenceRule> inferenceRules = new ArrayList<InferenceRule>();
-
 	private SeekBar toleranceSlider;
 
 	// this method generates a protobuf in base64 string form representing the app
@@ -863,8 +888,8 @@ public class AppDetailFragment extends Fragment {
 		((ImageView) rootView.findViewById(R.id.fragment_app_detail_icon)).setImageDrawable(app.getIcon());
 		//((TextView) rootView.findViewById(R.id.fragment_app_detail_subtitle)).setText("Sensors: Acl Gyr Loc Mic");
 
-		sensorViews = setupSensors();
-		inferenceViews = setupInferences();
+		setupSensors();
+		setupInferences();
 		setupApplyButtons();
 		setupToggler();
 		toleranceSlider = setupSensorToleranceSlider();

@@ -41,6 +41,7 @@ public class AppDetailActivity extends FragmentActivity {
 					getIntent().getStringExtra(AppDetailFragment.ARG_APP_STR));
 			AppDetailFragment fragment = new AppDetailFragment();
 			fragment.setArguments(arguments);
+			fragment.setContext(this);
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.app_detail_container, fragment)
 					.commit();

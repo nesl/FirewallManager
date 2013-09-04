@@ -6,27 +6,16 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.BufferedInputStream;
-
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-
 import android.graphics.drawable.Drawable;
-
-import android.util.Base64;
-
 import android.util.Log;
-
 import android.database.*;
 import android.database.sqlite.*;
-
-
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.SensorType;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.InferenceMethod;
-
 import com.google.protobuf.*;
-import android.os.FirewallConfigManager;
-import edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessage;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.SensorCountMessage;
 
 // }}}

@@ -564,6 +564,42 @@
 
 			<!-- }}} -->
 		</LinearLayout>
+		
+		
+		
+		<LinearLayout
+			android:id="@+id/fragment_app_detail_sensor_action_arguments_location"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingTop="18dp"
+			android:orientation="vertical"
+			android:visibility="gone" >
+			
+			<TextView
+			    android:id="@+id/fragment_app_detail_sensor_action_arguments_location_text1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Apply when I am within" />
+			
+			<Spinner
+		        android:id="@+id/fragment_app_detail_sensor_action_arguments_location_spinner_radius"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" />
+			
+			<TextView
+			    android:id="@+id/fragment_app_detail_sensor_action_arguments_location_text2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="of location" />
+			
+			<Spinner
+		        android:id="@+id/fragment_app_detail_sensor_action_arguments_location_spinner_tag"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" />
+			
+			
+		</LinearLayout>
+		
 	</LinearLayout>
 
 	<!-- }}} -->
