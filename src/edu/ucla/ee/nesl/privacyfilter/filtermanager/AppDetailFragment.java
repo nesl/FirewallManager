@@ -5,36 +5,38 @@ package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.content.SharedPreferences;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.CheckBox;
-import android.widget.Spinner;
-import android.widget.SeekBar;
-import android.widget.Button;
-import android.text.method.DigitsKeyListener;
-import android.util.Base64;
-import org.json.JSONObject;
+
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.os.FirewallConfigManager;
+import android.support.v4.app.Fragment;
+import android.text.method.DigitsKeyListener;
+import android.util.Base64;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.Spinner;
+import android.widget.TextView;
+import edu.ucla.ee.nesl.privacyfilter.filtermanager.algo.InferenceSensorMapper;
+import edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessage;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.AppFilterData;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.AppId;
-import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.InferenceMethod;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.Inference;
+import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.InferenceMethod;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.SensorType;
-import edu.ucla.ee.nesl.privacyfilter.filtermanager.algo.InferenceSensorMapper;
-import android.os.FirewallConfigManager;
-import edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessage;
 // }}}
 
 /**
@@ -281,6 +283,10 @@ public class AppDetailFragment extends Fragment {
 			TextView name = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_name);
 
 			name.setText(sensorType.getName());
+			
+			Log.i("frag", "sensorid=" + sensorType.getAndroidId());
+			Log.i("frag", "sensorname=" + sensorType.getName());
+			Log.i("frag", "constantNum=" + sensorType.getAndroidValueNames().length);
 
 			// set up this action's arguments {{{
 

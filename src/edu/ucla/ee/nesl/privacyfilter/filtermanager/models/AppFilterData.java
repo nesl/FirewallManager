@@ -81,6 +81,7 @@ public class AppFilterData {
 			Log.e(getClass().toString(), "Caught an exception: " + protoE.toString());
 		}
 
+		detectedSensorsUsed.add(SensorType.defineFromAndroid(SensorType.GPS_ID));
 		return detectedSensorsUsed;
 	} // }}}
 

@@ -1,10 +1,10 @@
 package edu.ucla.ee.nesl.privacyfilter.filtermanager.models;
 
-import android.util.Log;
 import android.database.*;
 import android.database.sqlite.*;
 
 public class SensorType {
+	public static final int GPS_ID = 18;
 	private static final int DBID_UNDEFINED = -1;
 
 	private int dbId; // the sensors ID in our database
@@ -25,11 +25,11 @@ public class SensorType {
 			this.defaultValues= new float[]{0f, 0f, 0f, 0f, 0f}; // default value for the default values
 		}
 
-		protected AndroidSensorIdData (String newName, String[] newValueNames, String[] newValueUnits, float[] newDefaultValues) {
-			this(newName, newValueNames, newValueUnits);
-
-			this.defaultValues = newDefaultValues;
-		}
+//		protected AndroidSensorIdData (String newName, String[] newValueNames, String[] newValueUnits, float[] newDefaultValues) {
+//			this(newName, newValueNames, newValueUnits);
+//
+//			this.defaultValues = newDefaultValues;
+//		}
 	} // }}}
 	private static AndroidSensorIdData[] androidSensorIdData = { // {{{
 		/* 0x00 */ new AndroidSensorIdData("(Unused sensor ID)", new String[]{}, new String[]{}),
@@ -49,7 +49,8 @@ public class SensorType {
 		/* 0x0e */ new AndroidSensorIdData("Magnetic field (uncalibrated)", new String[]{"Uncalib. X", "Uncalib. Y", "Uncalib. Z"}, new String[]{"\u03bcT", "\u03bcT", "\u03bcT"}),
 		/* 0x0f */ new AndroidSensorIdData("Game rotation vector", new String[]{"X", "Y", "Z", "\u03b8", "Accuracy"}, new String[]{"unitless", "unitless", "unitless", "radians", "radians"}),
 		/* 0x10 */ new AndroidSensorIdData("Gyroscope (uncalibrated)", new String[]{"Uncalib. X", "Uncalib. Y", "Uncalib. Z"}, new String[]{"rad/s", "rad/s", "rad/s"}),
-		/* 0x11 */ new AndroidSensorIdData("Significant motion", new String[]{"Motion"}, new String[]{"unitless"})
+		/* 0x11 */ new AndroidSensorIdData("Significant motion", new String[]{"Motion"}, new String[]{"unitless"}),
+		/* 0x12 */ new AndroidSensorIdData("GPS", new String[]{"Latitute", "Longitude"}, new String[]{"unitless", "unitless"})
 	}; // }}}
 
 	@Override public boolean equals (Object obj) { // {{{
@@ -112,8 +113,12 @@ public class SensorType {
 			SQLiteDatabase db = SQLiteDatabase.openDatabase(AppFilterData.INFERENCE_DB_FILE, null, SQLiteDatabase.OPEN_READONLY);
 
 			Cursor result = db.query("AndroidSensorIDs", new String[]{"sensorID"}, "androidSensorID = ?", new String[]{Integer.toString(this.androidId)}, null, null, null, "1");
-			result.moveToFirst();
-			this.dbId = result.getInt(0);
+			if (result.moveToFirst()) {
+				this.dbId = result.getInt(0);
+			}
+			else {
+				this.dbId = GPS_ID;
+			}
 
 			db.close();
 
