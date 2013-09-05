@@ -52,6 +52,30 @@
 		android:paddingLeft="16sp"
 		android:orientation="vertical"
 	>
+		
+	    
+	    <LinearLayout
+			android:id="@+id/fragment_app_detail_sensor_action_arguments_constant_location"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingTop="18dp"
+			android:orientation="vertical"
+			android:visibility="gone" >
+			
+			<TextView
+			    android:id="@+id/fragment_app_detail_sensor_action_arguments_constant_location_text1"
+				android:layout_width="100sp"
+				android:layout_height="wrap_content"
+				android:text="Fake location to:"
+				android:gravity="right" />
+			
+			<Spinner
+		        android:id="@+id/fragment_app_detail_sensor_action_arguments_constant_location_spinner"
+		        android:layout_width="200sp"
+		        android:layout_height="wrap_content" />			
+			
+		</LinearLayout>
+		
 		<!-- Constants {{{ -->
 
 		<!-- Constant 0 {{{ -->

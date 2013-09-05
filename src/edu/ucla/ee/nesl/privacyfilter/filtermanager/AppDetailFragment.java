@@ -138,6 +138,9 @@ public class AppDetailFragment extends Fragment {
 		private TextView[] constantNameViews;
 		private TextView[] constantUnitViews;
 		private TextView[] constantValueViews;
+		
+		private ViewGroup constantLocationView;
+		private Spinner constantLocationSpinner;
 
 		//private ViewGroup delayView;
 		//private TextView delayDaysView;
@@ -216,6 +219,7 @@ public class AppDetailFragment extends Fragment {
 					perturbView.setVisibility(View.GONE);
 					timingView.setVisibility(View.GONE);
 					locationView.setVisibility(View.GONE);
+					constantLocationView.setVisibility(View.GONE);
 
 					switch (position) {
 						case 0: // no action
@@ -225,8 +229,13 @@ public class AppDetailFragment extends Fragment {
 							locationView.setVisibility(View.VISIBLE);
 							break;
 						case 2: // constant
-							for (int constIdx = 0; constIdx < MAX_CONSTANTS && constIdx < sensorType.getAndroidValueNames().length; constIdx++) {
-								constantViews[constIdx].setVisibility(View.VISIBLE);
+							if (sensorType.getAndroidId() == SensorType.GPS_ID) {
+								constantLocationView.setVisibility(View.VISIBLE);
+							}
+							else {
+								for (int constIdx = 0; constIdx < MAX_CONSTANTS && constIdx < sensorType.getAndroidValueNames().length; constIdx++) {
+									constantViews[constIdx].setVisibility(View.VISIBLE);
+								}
 							}
 							timingView.setVisibility(View.VISIBLE);
 							locationView.setVisibility(View.VISIBLE);
@@ -275,6 +284,25 @@ public class AppDetailFragment extends Fragment {
 				ArrayAdapter<String> dataAdapterLoc = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, listloc);
 				tagSpinner.setAdapter(dataAdapterLoc);
 			}
+		}
+		
+		private void setupLocationConstant() {
+			constantLocationView = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant_location);
+			constantLocationSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant_location_spinner);
+			
+			List<String> listloc = new ArrayList<String>();
+			listloc.add("None");
+			listloc.add("Home");
+			listloc.add("Work");
+			listloc.add("Grocery");
+			listloc.add("Hospital");
+			
+			if (context != null) {				
+				ArrayAdapter<String> dataAdapterLoc = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, listloc);
+				constantLocationSpinner.setAdapter(dataAdapterLoc);
+			}
+			
+			constantLocationView.setVisibility(View.GONE);
 		}
 
 		protected void setView (View ruleView) { // {{{
@@ -366,6 +394,7 @@ public class AppDetailFragment extends Fragment {
 
 			setupActionSpinner();
 			setupPerturbSpinner();
+			setupLocationConstant();
 		} // }}}
 
 		protected FirewallConfigMessage.Rule genRule () { // {{{
