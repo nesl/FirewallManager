@@ -88,7 +88,7 @@ public class AppListActivity extends FragmentActivity
 		} else {
 			// In single-pane mode, simply start the detail activity
 			// for the selected item ID.
-			Intent detailIntent = new Intent(this, AppDetailActivity.class);
+			Intent detailIntent = new Intent(this, AppDetailActivityWithMap.class);
 			detailIntent.putExtra(AppDetailFragment.ARG_APP_STR, uniqueAppString);
 			startActivity(detailIntent);
 		}

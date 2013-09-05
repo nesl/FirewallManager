@@ -7,18 +7,25 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="17" />
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name="edu.ucla.ee.nesl.privacyfilter.filtermanager.AppListActivity"
             android:label="@string/app_name" >
-            <intent-filter>
+             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -31,6 +38,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AppListActivity" />
         </activity>
+        <activity
+            android:name="edu.ucla.ee.nesl.privacyfilter.filtermanager.AppDetailActivityWithMap"
+            android:label="@string/title_app_detail_tab" 
+            android:parentActivityName="edu.ucla.ee.nesl.privacyfilter.filtermanager.AppListActivity"
+            android:windowSoftInputMode="stateUnchanged">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AppListActivity" />
+        </activity>
+        
+        <meta-data
+		    android:name="com.google.android.maps.v2.API_KEY"
+		    android:value="AIzaSyCxEK9l2fAzJqfc5OtkjDKex4qexn1FAdQ"/>
     </application>
 
 </manifest>
