@@ -1,12 +1,13 @@
 package edu.ucla.ee.nesl.privacyfilter.filtermanager.models;
 
-import android.database.*;
-import android.database.sqlite.*;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 public class SensorType {
 	public static final int GPS_ID = 18;
 	private static final int DBID_UNDEFINED = -1;
-
+	private Context context;
 	private int dbId; // the sensors ID in our database
 	private int androidId; // the sensor type constant according to android
 	private String name = null;
@@ -72,10 +73,10 @@ public class SensorType {
 
 	private SensorType () { // this class should not be instantiated directly {{{
 	} /// }}}
-	public static SensorType defineFromDb (int dbId) { // {{{
+	public static SensorType defineFromDb (int dbId, Context _context) { // {{{
 		SensorType st = new SensorType();
 		st.dbId = dbId;
-
+		st.context = _context;
 		SQLiteDatabase db = SQLiteDatabase.openDatabase(AppFilterData.INFERENCE_DB_FILE, null, SQLiteDatabase.OPEN_READONLY);
 
 		Cursor result = db.query("AndroidSensorIDs", new String[]{"androidSensorID"}, "sensorID = ?", new String[]{Integer.toString(st.dbId)}, null, null, null, "1");
@@ -86,11 +87,11 @@ public class SensorType {
 
 		return st;
 	} // }}}
-	public static SensorType defineFromAndroid (int androidId) { // {{{
+	public static SensorType defineFromAndroid (int androidId, Context _context) { // {{{
 		SensorType st = new SensorType();
 		st.androidId = androidId;
 		st.dbId = DBID_UNDEFINED;
-
+		st.context = _context;
 		st.name = androidSensorIdData[st.androidId].sensorName;
 
 		return st;
@@ -110,18 +111,28 @@ public class SensorType {
 		if (dbId != DBID_UNDEFINED) {
 			return dbId;
 		} else {
-			SQLiteDatabase db = SQLiteDatabase.openDatabase(AppFilterData.INFERENCE_DB_FILE, null, SQLiteDatabase.OPEN_READONLY);
-
-			Cursor result = db.query("AndroidSensorIDs", new String[]{"sensorID"}, "androidSensorID = ?", new String[]{Integer.toString(this.androidId)}, null, null, null, "1");
-			if (result.moveToFirst()) {
-				this.dbId = result.getInt(0);
+			
+			SQLiteDatabase db = null;
+			DataBaseHelper myDbHelper = new DataBaseHelper(context);
+	        try {
+	        	myDbHelper.createDataBase();
+				db = myDbHelper.openDataBase();
+			} catch (Exception sqle) {
+				sqle.printStackTrace();
 			}
-			else {
-				this.dbId = GPS_ID;
-			}
+	        
+			//SQLiteDatabase db = SQLiteDatabase.openDatabase(AppFilterData.INFERENCE_DB_FILE, null, SQLiteDatabase.OPEN_READONLY);
+	        if (db != null) {
+				Cursor result = db.query("AndroidSensorIDs", new String[]{"sensorID"}, "androidSensorID = ?", new String[]{Integer.toString(this.androidId)}, null, null, null, "1");
+				if (result.moveToFirst()) {
+					this.dbId = result.getInt(0);
+				}
+				else {
+					this.dbId = GPS_ID;
+				}
 
-			db.close();
-
+				db.close();
+	        }
 			return this.dbId;
 		}
 	} // }}}

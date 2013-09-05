@@ -2,20 +2,22 @@ package edu.ucla.ee.nesl.privacyfilter.filtermanager.models;
 
 // imports {{{
 
-import java.util.ArrayList;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.BufferedInputStream;
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
-import android.database.*;
-import android.database.sqlite.*;
-import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.SensorType;
-import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.InferenceMethod;
-import com.google.protobuf.*;
+
+import com.google.protobuf.InvalidProtocolBufferException;
+
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.SensorCountMessage;
 
 // }}}
@@ -23,6 +25,8 @@ import edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.SensorCountMessa
 public class AppFilterData {
 	public static final String APP_TRACKER_FILE = "/data/sensor-counter";
 	public static final String INFERENCE_DB_FILE = "/data/data/edu.ucla.ee.nesl.privacyfilter.filtermanager/databases/inference.db";
+    
+	
 
 	// convenience {{{
 	public static byte[] readBytes (String filePath) {
@@ -72,7 +76,7 @@ public class AppFilterData {
 					for (int sensorIdx = 0; sensorIdx < appEntry.getSensorEntryCount(); sensorIdx++) {
 						// index of the sensor in the sensorEntry array corresponds the sensor's android ID
 						if (appEntry.getSensorEntry(sensorIdx).getCount() > 0) {
-							detectedSensorsUsed.add(SensorType.defineFromAndroid(sensorIdx));
+							detectedSensorsUsed.add(SensorType.defineFromAndroid(sensorIdx, context));
 						}
 					}
 				}
@@ -81,7 +85,7 @@ public class AppFilterData {
 			Log.e(getClass().toString(), "Caught an exception: " + protoE.toString());
 		}
 
-		detectedSensorsUsed.add(SensorType.defineFromAndroid(SensorType.GPS_ID));
+		detectedSensorsUsed.add(SensorType.defineFromAndroid(SensorType.GPS_ID, context));
 		return detectedSensorsUsed;
 	} // }}}
 
@@ -109,32 +113,46 @@ public class AppFilterData {
 		for (SensorType st : getSensorsUsed()) {
 			dbSensorTypesAvailable.add(st.getDbId());
 		}
-		SQLiteDatabase db = SQLiteDatabase.openDatabase(INFERENCE_DB_FILE, null, SQLiteDatabase.OPEN_READWRITE);
-		db.beginTransaction();
-		try {
-			createSensorsAvailableTable(db, dbSensorTypesAvailable);
+		
+		SQLiteDatabase db = null;
+		DataBaseHelper myDbHelper = new DataBaseHelper(context);
+        try {
+        	myDbHelper.createDataBase();
+			db = myDbHelper.openDataBase();
+		} catch (Exception sqle) {
+			sqle.printStackTrace();
+		}
+		//SQLiteDatabase db = SQLiteDatabase.openDatabase(INFERENCE_DB_FILE, null, SQLiteDatabase.OPEN_READWRITE);
+		if (db != null) {
+			db.beginTransaction();
+			try {
+				createSensorsAvailableTable(db, dbSensorTypesAvailable);
 
-			Cursor iMethodsC = db.rawQuery("SELECT DISTINCT methodID FROM Requirements EXCEPT SELECT methodID FROM Requirements LEFT JOIN SensorsAvailable ON (Requirements.sensorID = SensorsAvailable.sensorID) WHERE SensorsAvailable.sensorID IS NULL;", null);
-			methodIds = new int[iMethodsC.getCount()];
-			for (int methIdx = 0; methIdx < methodIds.length; methIdx++) {
-				iMethodsC.moveToPosition(methIdx);
-				methodIds[methIdx] = iMethodsC.getInt(0);
+				Cursor iMethodsC = db.rawQuery("SELECT DISTINCT methodID FROM Requirements EXCEPT SELECT methodID FROM Requirements LEFT JOIN SensorsAvailable ON (Requirements.sensorID = SensorsAvailable.sensorID) WHERE SensorsAvailable.sensorID IS NULL;", null);
+				methodIds = new int[iMethodsC.getCount()];
+				for (int methIdx = 0; methIdx < methodIds.length; methIdx++) {
+					iMethodsC.moveToPosition(methIdx);
+					methodIds[methIdx] = iMethodsC.getInt(0);
+				}
+
+				db.execSQL("DROP TABLE SensorsAvailable;");
+				db.setTransactionSuccessful();
+
+			} finally {
+				db.endTransaction();
 			}
-
-			db.execSQL("DROP TABLE SensorsAvailable;");
-			db.setTransactionSuccessful();
-
-		} finally {
-			db.endTransaction();
+			db.close();
+			
+			ArrayList<InferenceMethod> methods = new ArrayList<InferenceMethod>();
+			for (int mId : methodIds) {
+				methods.add(new InferenceMethod(mId, context));
+			}
+			
+			return methods;
 		}
-		db.close();
-
-		ArrayList<InferenceMethod> methods = new ArrayList<InferenceMethod>();
-		for (int mId : methodIds) {
-			methods.add(new InferenceMethod(mId));
+		else {
+			return null;
 		}
-
-		return methods;
 	} // }}}
 
 	public AppFilterData (Context baseContext, ApplicationInfo basePmAppInfo) { // {{{
