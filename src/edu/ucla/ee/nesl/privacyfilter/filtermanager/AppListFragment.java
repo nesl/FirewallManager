@@ -26,6 +26,7 @@ import java.util.ArrayList;
  * interface.
  */
 public class AppListFragment extends ListFragment {
+	public static final String SELF_NAME = "edu.ucla.ee.nesl.privacyfilter.filtermanager";
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -82,7 +83,7 @@ public class AppListFragment extends ListFragment {
 				List<ApplicationInfo> appInfoList = getActivity().getPackageManager().getInstalledApplications(0);
 
 				for (int app_idx = 0; app_idx < appInfoList.size(); app_idx++) {
-					if ((appInfoList.get(app_idx).flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+					if ((appInfoList.get(app_idx).flags & ApplicationInfo.FLAG_SYSTEM) == 0 && (!appInfoList.get(app_idx).packageName.equals(SELF_NAME))) {
 
 						// currently only listing non-system-installed apps
 						appFilterDataList.add(new AppFilterData(getActivity(), appInfoList.get(app_idx)));

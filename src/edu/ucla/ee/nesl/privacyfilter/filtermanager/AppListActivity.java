@@ -1,10 +1,10 @@
 package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.content.SharedPreferences;
-
+import android.util.Log;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.AppId;
 
 
@@ -71,6 +71,7 @@ public class AppListActivity extends FragmentActivity
 	@Override
 	public void onItemSelected(AppId appId) {
 		String uniqueAppString = appId.generateUniqueString();
+		Log.i("AppListActivity", uniqueAppString);
 
 		if (mTwoPane) {
 			// In two-pane mode, show the detail view in this activity by
