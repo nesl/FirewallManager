@@ -46,6 +46,22 @@
 				android:paddingLeft="12dp"
 				android:orientation="vertical"
 			/>
+			
+			<TextView
+					android:id="@+id/fragment_app_detail_inferences_priority_label"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="@string/percentage"
+					android:textColor="#ff0000"
+				/>
+
+				<SeekBar
+					android:id="@+id/fragment_app_detail_inferences_priority"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:max="10"
+					android:progress="0"
+				/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -68,7 +84,7 @@
 				android:text="@string/fragment_app_detail_inference_action_allow"
 			/>
 
-			<EditText
+<!-- 			<EditText
 				android:id="@+id/fragment_app_detail_inference_priority"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
@@ -78,7 +94,7 @@
 				android:digits="0123456789"
 				android:hint="Pri?"
 				android:textSize="10sp"
-			/>
+			/> -->
 		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>

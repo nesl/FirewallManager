@@ -615,7 +615,8 @@ public class AppDetailFragment extends Fragment {
 
 		private View ruleView;
 		private TextView actionView;
-		private TextView priorityView;
+		private SeekBar priorityBar;
+		private TextView priorityValue;
 
 		// }}}
 
@@ -661,8 +662,31 @@ public class AppDetailFragment extends Fragment {
 				methTV.setText(infDesc);
 				((ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_inference_methods)).addView(methTV);
 			}
+			
+			this.priorityBar = (SeekBar) ruleView.findViewById(R.id.fragment_app_detail_inferences_priority);
+			this.priorityValue = (TextView) ruleView.findViewById(R.id.fragment_app_detail_inferences_priority_label);
+			
+			priorityBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
 
-			this.priorityView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_inference_priority);
+				@Override
+				public void onProgressChanged(SeekBar seekBar, int progress,
+						boolean fromUser) {
+					priorityValue.setText("\tPriority: " + Integer.toString(priorityBar.getProgress() * 10) + "%");
+				}
+
+				@Override
+				public void onStartTrackingTouch(SeekBar seekBar) {
+					
+				}
+
+				@Override
+				public void onStopTrackingTouch(SeekBar seekBar) {
+					
+				} 
+				
+			});
+			priorityValue.setText(priorityValue.getText() + Integer.toString(priorityBar.getProgress() * 10) + "%");
+			//this.priorityView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_inference_priority);
 
 			setupActionToggler();
 		} // }}}
@@ -693,11 +717,12 @@ public class AppDetailFragment extends Fragment {
 
 		// returns the priority for this rule, or -1 if the user has not set a priority
 		public int getPriority () { // {{{
-			if (priorityView.getText().equals("")) {
-				return -1;
-			} else {
-				return str2int(priorityView.getText());
-			}
+			return priorityBar.getProgress() * 10;
+//			if (priorityView.getText().equals("")) {
+//				return -1;
+//			} else {
+//				return str2int(priorityView.getText());
+//			}
 		} // }}}
 
 		protected JSONObject saveGuiState () throws JSONException { // {{{
@@ -707,13 +732,14 @@ public class AppDetailFragment extends Fragment {
 			state.put("inference_id", inference.getInferenceId());
 
 			state.put("selected_action", getSelectedAction());
-			state.put("priority", priorityView.getText());
+			state.put("priority", priorityBar.getProgress());
 
 			return state;
 		} // }}}
 		protected void restoreGuiState (JSONObject state) throws JSONException { // {{{
 			setSelectedAction(state.getInt("selected_action"));
-			priorityView.setText(state.getString("priority"));
+			priorityBar.setProgress(state.getInt("priority"));
+			//priorityView.setText(state.getString("priority"));
 		} // }}}
 	}
 
@@ -723,7 +749,7 @@ public class AppDetailFragment extends Fragment {
 	private View rootView;
 	private ArrayList<SensorTypeRule> sensorRules = new ArrayList<SensorTypeRule>();
 	private ArrayList<InferenceRule> inferenceRules = new ArrayList<InferenceRule>();
-	private SeekBar toleranceSlider;
+	//private SeekBar toleranceSlider;
 
 	// this method generates a protobuf in base64 string form representing the app
 	public String genProtobuf64 () { // {{{
@@ -755,7 +781,7 @@ public class AppDetailFragment extends Fragment {
 			inferencePreferences.put(iRule.getInference(), preference);
 		}
 
-		HashMap<SensorType, Integer> sensorActionMap = InferenceSensorMapper.generateSensorMap(inferencePreferences, app.getSensorsUsed(), toleranceSlider.getProgress());
+		HashMap<SensorType, Integer> sensorActionMap = InferenceSensorMapper.generateSensorMap(inferencePreferences, app.getSensorsUsed());
 
 		for (SensorType sensor : sensorActionMap.keySet()) {
 			SensorTypeRule sensorRule = null;
@@ -877,23 +903,23 @@ public class AppDetailFragment extends Fragment {
 			}
 		});
 	} // }}}
-	private SeekBar setupSensorToleranceSlider() { // {{{
-		SeekBar toleranceSlider = (SeekBar) rootView.findViewById(R.id.fragment_app_detail_inferences_sensortolerance);
-
-		toleranceSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener () {
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-				((TextView) rootView.findViewById(R.id.fragment_app_detail_inferences_sensortolerance_label)).setText("Sensor tolerance: " + Integer.toString(progress));
-			}
-
-			public void onStartTrackingTouch(SeekBar seekBar) {
-			}
-
-			public void onStopTrackingTouch(SeekBar seekBar) {
-			}
-		});
-
-		return toleranceSlider;
-	} // }}}
+//	private SeekBar setupSensorToleranceSlider() { // {{{
+//		SeekBar toleranceSlider = (SeekBar) rootView.findViewById(R.id.fragment_app_detail_inferences_sensortolerance);
+//
+//		toleranceSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener () {
+//			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//				((TextView) rootView.findViewById(R.id.fragment_app_detail_inferences_sensortolerance_label)).setText("Sensor tolerance: " + Integer.toString(progress));
+//			}
+//
+//			public void onStartTrackingTouch(SeekBar seekBar) {
+//			}
+//
+//			public void onStopTrackingTouch(SeekBar seekBar) {
+//			}
+//		});
+//
+//		return toleranceSlider;
+//	} // }}}
 
 	// onCreate {{{
 
@@ -927,7 +953,7 @@ public class AppDetailFragment extends Fragment {
 		setupInferences();
 		setupApplyButtons();
 		setupToggler();
-		toleranceSlider = setupSensorToleranceSlider();
+		//toleranceSlider = setupSensorToleranceSlider();
 
 		return rootView;
 	}
@@ -961,7 +987,7 @@ public class AppDetailFragment extends Fragment {
 		}
 		state.put("inference_rules", serializedInferenceRules);
 
-		state.put("sensor_tolerance", toleranceSlider.getProgress());
+		//state.put("sensor_tolerance", toleranceSlider.getProgress());
 
 		return state;
 	} // }}}
@@ -1000,7 +1026,7 @@ public class AppDetailFragment extends Fragment {
 			}
 		}
 
-		toleranceSlider.setProgress(state.getInt("sensor_tolerance"));
+		//toleranceSlider.setProgress(state.getInt("sensor_tolerance"));
 	} // }}}
 
 	public void onPause() { // {{{

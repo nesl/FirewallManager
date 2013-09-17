@@ -1,10 +1,7 @@
 package edu.ucla.ee.nesl.privacyfilter.filtermanager.algo;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.SensorType;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.InferenceMethod;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.Inference;
@@ -31,7 +28,7 @@ public class InferenceSensorMapper {
 		}
 	} // }}}
 
-	public static HashMap<SensorType, Integer> generateSensorMap (HashMap<Inference, InferencePreference> inferencePreferences, ArrayList<SensorType> allSensorsAvailable, int sensorTolerance) {
+	public static HashMap<SensorType, Integer> generateSensorMap (HashMap<Inference, InferencePreference> inferencePreferences, ArrayList<SensorType> allSensorsAvailable) {
 		HashMap<SensorType, Integer> sensorMap = new HashMap<SensorType, Integer>();
 
 		for (Inference inference : inferencePreferences.keySet()) {
