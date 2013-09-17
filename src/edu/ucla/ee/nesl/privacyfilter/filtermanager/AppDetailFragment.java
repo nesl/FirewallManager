@@ -166,6 +166,8 @@ public class AppDetailFragment extends Fragment {
 		
 		private ViewGroup locationView;
 		private Spinner radiusSpinner, tagSpinner;
+		
+		private ViewGroup externalView;
 
 		// }}}
 
@@ -220,6 +222,7 @@ public class AppDetailFragment extends Fragment {
 					timingView.setVisibility(View.GONE);
 					locationView.setVisibility(View.GONE);
 					constantLocationView.setVisibility(View.GONE);
+					externalView.setVisibility(View.GONE);
 
 					switch (position) {
 						case 0: // no action
@@ -227,6 +230,7 @@ public class AppDetailFragment extends Fragment {
 						case 1: // suppress
 							timingView.setVisibility(View.VISIBLE);
 							locationView.setVisibility(View.VISIBLE);
+							externalView.setVisibility(View.VISIBLE);
 							break;
 						case 2: // constant
 							if (sensorType.getAndroidId() == SensorType.GPS_ID) {
@@ -239,6 +243,7 @@ public class AppDetailFragment extends Fragment {
 							}
 							timingView.setVisibility(View.VISIBLE);
 							locationView.setVisibility(View.VISIBLE);
+							externalView.setVisibility(View.VISIBLE);
 							break;
 						//case 3: // delay
 						//	delayView.setVisibility(View.VISIBLE);
@@ -252,6 +257,7 @@ public class AppDetailFragment extends Fragment {
 							perturbView.setVisibility(View.VISIBLE);
 							timingView.setVisibility(View.VISIBLE);
 							locationView.setVisibility(View.VISIBLE);
+							externalView.setVisibility(View.VISIBLE);
 							break;
 					}
 				}
@@ -390,6 +396,8 @@ public class AppDetailFragment extends Fragment {
 			radiusSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_location_spinner_radius);
 			tagSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_location_spinner_tag);
 			setUpLocationSpinner();
+			
+			externalView = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_external);
 			// }}}
 
 			setupActionSpinner();
