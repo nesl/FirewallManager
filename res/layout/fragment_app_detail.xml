@@ -81,10 +81,9 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:paddingTop="8dp"
+				android:paddingTop="0dp"
 				android:orientation="vertical"
 			>
-
 				<LinearLayout
 					android:id="@+id/fragment_app_detail_inferences"
 					android:layout_width="match_parent"
@@ -95,7 +94,7 @@
 				<Button
 					android:id="@+id/fragment_app_detail_apply_inferences"
 					android:layout_width="match_parent"
-					android:layout_height="64dp"
+					android:layout_height="40dp"
 					android:text="Apply"
 				/>
 			</LinearLayout>
