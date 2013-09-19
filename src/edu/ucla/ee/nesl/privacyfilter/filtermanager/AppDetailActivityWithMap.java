@@ -31,6 +31,9 @@ import android.view.ViewGroup;
 public class AppDetailActivityWithMap extends FragmentActivity implements ActionBar.TabListener {
 	
 	private static AppDetailActivityWithMap activity;
+	private static AppDetailFragment fragment0 = null;
+	private static ExternalContextFragment fragment1 = null;
+	private static MapMarkerFragment fragment2 = null;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each of the
@@ -120,35 +123,47 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
             switch (i) {
                 case 0:
                     // The first section of the app is the most interesting -- it offers
-                    // a launchpad into the other demonstrations in this example application.
-        			Bundle arguments = new Bundle();
-        			arguments.putString(AppDetailFragment.ARG_APP_STR, activity.getIntent().getStringExtra(AppDetailFragment.ARG_APP_STR));
-        			AppDetailFragment fragment = new AppDetailFragment();
-        			fragment.setArguments(arguments);
-        			fragment.setContext(activity);
+                    // a launchpad into the other demonstrations in this example application
+                	if (fragment0 == null) {
+                		Bundle arguments = new Bundle();
+            			arguments.putString(AppDetailFragment.ARG_APP_STR, activity.getIntent().getStringExtra(AppDetailFragment.ARG_APP_STR));
+            			fragment0 = new AppDetailFragment();
+            			fragment0.setArguments(arguments);
+            			fragment0.setContext(activity);
+                	}
+        			
         			//activity.getSupportFragmentManager().beginTransaction().remove(fragment).add(R.id.app_detail_container, fragment).commit();
-                    return fragment;
+                    return fragment0;
 
+                case 1:
+                	if (fragment1 == null) {
+                		fragment1 = new ExternalContextFragment();
+                	}
+                	return fragment1;
+                	
+                case 2:
+                	if (fragment2 == null) {
+                		fragment2 = new MapMarkerFragment();
+                	}
+                	return fragment2;
+                
                 default:
-                    // The other sections of the app are dummy placeholders.
-//                    Fragment fragment1 = new DummySectionFragment();
-//                    Bundle args = new Bundle();
-//                    args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, i + 1);
-//                    fragment1.setArguments(args);
-//                    return fragment1;
-                	return new MapMarkerFragment();
+                	return null;
             }
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             if (position == 0) {
             	return "App Detail";
+            }
+            else if (position == 1) {
+            	return "External Context";
             }
             else {
             	return "Map";

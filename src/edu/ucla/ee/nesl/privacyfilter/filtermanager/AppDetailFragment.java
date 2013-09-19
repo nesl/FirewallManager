@@ -168,6 +168,7 @@ public class AppDetailFragment extends Fragment {
 		private Spinner radiusSpinner, tagSpinner;
 		
 		private ViewGroup externalView;
+		private Spinner externalSpinner;
 
 		// }}}
 
@@ -311,6 +312,20 @@ public class AppDetailFragment extends Fragment {
 			
 			constantLocationView.setVisibility(View.GONE);
 		}
+		
+		private void setUpExternalSpinner() {
+			List<String> list = new ArrayList<String>();
+			list.add("None");
+			list.add("Indoor");
+			list.add("Outdoor");
+			list.add("Driving");
+			list.add("Running");
+			
+			if (context != null) {
+				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, list);
+				externalSpinner.setAdapter(dataAdapter);
+			}
+		}
 
 		protected void setView (View ruleView) { // {{{
 			this.ruleView = ruleView;
@@ -400,6 +415,8 @@ public class AppDetailFragment extends Fragment {
 			setUpLocationSpinner();
 			
 			externalView = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_external);
+			externalSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_external_spinner);
+			setUpExternalSpinner();
 			// }}}
 
 			setupActionSpinner();
