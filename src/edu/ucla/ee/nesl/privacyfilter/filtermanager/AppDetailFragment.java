@@ -315,8 +315,9 @@ public class AppDetailFragment extends Fragment {
 			this.ruleView = ruleView;
 
 			TextView name = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_name);
+			//TextView count = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_count);
 
-			name.setText(sensorType.getName());
+			name.setText(sensorType.getName() + "\n\tUse count: " + app.getSensorCount(sensorType.getAndroidId()));
 			
 			Log.i("frag", "sensorid=" + sensorType.getAndroidId());
 			Log.i("frag", "sensorname=" + sensorType.getName());
@@ -656,11 +657,17 @@ public class AppDetailFragment extends Fragment {
 
 		protected void setView (View ruleView) { // {{{
 			this.ruleView = ruleView;
-
 			((TextView) ruleView.findViewById(R.id.fragment_app_detail_inference_name)).setText(inference.getName());
 
 			for (InferenceMethod method : inference.getInferenceMethods()) {
-				String infDesc = Double.toString(method.getAccuracy()) + "% accuracy using: ";
+				String infDesc = "\tContext: " + method.getDesc() + "\n\t";
+				
+				if (method.getAccuracy() != -1.0 && method.getAccuracy() != 100.0) {
+					infDesc += Double.toString(method.getAccuracy()) + "% accuracy using: ";
+				}
+				else {
+					infDesc += "Using: ";
+				}
 
 				for (SensorType sensor : method.getSensorsRequired()) {
 					infDesc += "\n\t* " + sensor.getName();

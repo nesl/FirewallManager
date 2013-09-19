@@ -77,13 +77,26 @@ public class SensorType {
 		SensorType st = new SensorType();
 		st.dbId = dbId;
 		st.context = _context;
-		SQLiteDatabase db = SQLiteDatabase.openDatabase(AppFilterData.INFERENCE_DB_FILE, null, SQLiteDatabase.OPEN_READONLY);
+		//SQLiteDatabase db = SQLiteDatabase.openDatabase(AppFilterData.INFERENCE_DB_FILE, null, SQLiteDatabase.OPEN_READONLY);
+		
+		SQLiteDatabase db = null;
+		DataBaseHelper myDbHelper = new DataBaseHelper(_context);
+        try {
+        	myDbHelper.createDataBase();
+			db = myDbHelper.openDataBase();
+		} catch (Exception sqle) {
+			sqle.printStackTrace();
+		}
+        
+        if (db != null) {
+    		Cursor result = db.query("AndroidSensorIDs", new String[]{"androidSensorID"}, "sensorID = ?", new String[]{Integer.toString(st.dbId)}, null, null, null, "1");
+    		result.moveToFirst();
+    		st.androidId = result.getInt(0);
 
-		Cursor result = db.query("AndroidSensorIDs", new String[]{"androidSensorID"}, "sensorID = ?", new String[]{Integer.toString(st.dbId)}, null, null, null, "1");
-		result.moveToFirst();
-		st.androidId = result.getInt(0);
+    		db.close();
+        }
+		
 
-		db.close();
 
 		return st;
 	} // }}}

@@ -15,6 +15,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.util.SparseArray;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -24,11 +25,9 @@ import edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.SensorCountMessa
 
 public class AppFilterData {
 	public static final String APP_TRACKER_FILE = "/data/sensor-counter";
-	public static final String INFERENCE_DB_FILE = "/data/data/edu.ucla.ee.nesl.privacyfilter.filtermanager/databases/inference.db";
+	//public static final String INFERENCE_DB_FILE = "/data/data/edu.ucla.ee.nesl.privacyfilter.filtermanager/databases/inference.db";
     
-	
-
-	// convenience {{{
+		// convenience {{{
 	public static byte[] readBytes (String filePath) {
 		byte[] buf;
 		
@@ -58,12 +57,13 @@ public class AppFilterData {
 	private ApplicationInfo pmAppInfo; // app info from some package manager object
 
 	private ArrayList<SensorType> sensorsUsed;
+	private SparseArray<Long> sensorsCount;
 	private ArrayList<InferenceMethod> inferenceMethods = null; // per the inference database, this should list all methods by which this app could obtain an inference
 	private ArrayList<Inference> inferences = null; // per the inference database, this should list all inferences that this app could obtain
 
-	private ArrayList<SensorType> detectSensorsUsed () { // {{{
-		ArrayList<SensorType> detectedSensorsUsed = new ArrayList<SensorType>();
-
+	private void detectSensorsUsed () { // {{{
+		sensorsUsed = new ArrayList<SensorType>();
+		sensorsCount = new SparseArray<Long>();
 		byte[] rawSensorBytes = readBytes(APP_TRACKER_FILE);
 
 		try {
@@ -76,7 +76,8 @@ public class AppFilterData {
 					for (int sensorIdx = 0; sensorIdx < appEntry.getSensorEntryCount(); sensorIdx++) {
 						// index of the sensor in the sensorEntry array corresponds the sensor's android ID
 						if (appEntry.getSensorEntry(sensorIdx).getCount() > 0) {
-							detectedSensorsUsed.add(SensorType.defineFromAndroid(sensorIdx, context));
+							sensorsUsed.add(SensorType.defineFromAndroid(sensorIdx, context));
+							sensorsCount.put(sensorIdx, appEntry.getSensorEntry(sensorIdx).getCount());
 						}
 					}
 				}
@@ -85,8 +86,8 @@ public class AppFilterData {
 			Log.e(getClass().toString(), "Caught an exception: " + protoE.toString());
 		}
 
-		detectedSensorsUsed.add(SensorType.defineFromAndroid(SensorType.GPS_ID, context));
-		return detectedSensorsUsed;
+		sensorsUsed.add(SensorType.defineFromAndroid(SensorType.GPS_ID, context));
+		sensorsCount.put(SensorType.GPS_ID, (long)(20 * Math.random()));
 	} // }}}
 
 	private void createSensorsAvailableTable (SQLiteDatabase db, ArrayList<Integer> dbSensorTypesAvailable) throws SQLException { // {{{
@@ -159,8 +160,7 @@ public class AppFilterData {
 		this.context = baseContext;
 		this.pm = this.context.getPackageManager();
 		this.pmAppInfo = basePmAppInfo;
-
-		sensorsUsed = detectSensorsUsed();
+		detectSensorsUsed();
 	} // }}}
 
 	public String toString () { // {{{
@@ -185,7 +185,7 @@ public class AppFilterData {
 	} // }}}
 	public ArrayList<Inference> getInferences () { // {{{
 		if (inferenceMethods == null) {
-			inferences = Inference.getInferencesFromMethods(getInferenceMethods());
+			inferences = Inference.getInferencesFromMethods(getInferenceMethods(), context);
 		}
 
 		return inferences;
@@ -193,4 +193,7 @@ public class AppFilterData {
 	public ArrayList<SensorType> getSensorsUsed () { // {{{
 		return sensorsUsed;
 	} // }}}
+	public long getSensorCount(int sensorId) {
+		return sensorsCount.get(sensorId);
+	}
 }

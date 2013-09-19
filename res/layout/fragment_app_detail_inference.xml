@@ -83,18 +83,6 @@
 				android:background="@drawable/back"
 				android:text="@string/fragment_app_detail_inference_action_allow"
 			/>
-
-<!-- 			<EditText
-				android:id="@+id/fragment_app_detail_inference_priority"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:editable="true"
-				android:inputType="number"
-				android:digits="0123456789"
-				android:hint="Pri?"
-				android:textSize="10sp"
-			/> -->
 		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>
