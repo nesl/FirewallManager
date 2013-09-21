@@ -10,7 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -132,7 +135,9 @@ public class AppDetailFragment extends Fragment {
 		// View members {{{
 
 		private View ruleView;
+		private View editView;
 		private Spinner ruleActionView;
+		private Button ruleActionButton;
 
 		private ViewGroup[] constantViews;
 		private TextView[] constantNameViews;
@@ -210,9 +215,90 @@ public class AppDetailFragment extends Fragment {
 				}
 			});
 		} // }}}
-		private void setupActionSpinner () { // {{{
-			ruleActionView = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action);
+		private void setupActionButton () { // {{{
+			LayoutInflater sensorInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			editView = sensorInflater.inflate(R.layout.fragment_app_detail_sensor_edit, null);
+			
+			this.constantViews = new ViewGroup[MAX_CONSTANTS];
+			this.constantNameViews = new TextView[MAX_CONSTANTS];
+			this.constantUnitViews = new TextView[MAX_CONSTANTS];
+			this.constantValueViews = new TextView[MAX_CONSTANTS];
 
+			this.constantViews[0] = (ViewGroup) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant0);
+			this.constantViews[1] = (ViewGroup) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant1);
+			this.constantViews[2] = (ViewGroup) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant2);
+			this.constantViews[3] = (ViewGroup) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant3);
+			this.constantViews[4] = (ViewGroup) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant4);
+			this.constantNameViews[0] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant0_name);
+			this.constantNameViews[1] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant1_name);
+			this.constantNameViews[2] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant2_name);
+			this.constantNameViews[3] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant3_name);
+			this.constantNameViews[4] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant4_name);
+			this.constantUnitViews[0] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant0_unit);
+			this.constantUnitViews[1] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant1_unit);
+			this.constantUnitViews[2] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant2_unit);
+			this.constantUnitViews[3] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant3_unit);
+			this.constantUnitViews[4] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant4_unit);
+			this.constantValueViews[0] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant0_value);
+			this.constantValueViews[1] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant1_value);
+			this.constantValueViews[2] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant2_value);
+			this.constantValueViews[3] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant3_value);
+			this.constantValueViews[4] = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant4_value);
+
+			// set up constant names and units as well as default values... also handle setting types
+			for (int constIdx = 0; constIdx < MAX_CONSTANTS && constIdx < sensorType.getAndroidValueNames().length; constIdx++) {
+				this.constantNameViews[constIdx].setText(sensorType.getAndroidValueNames()[constIdx] + ":");
+				this.constantUnitViews[constIdx].setText("(" + sensorType.getAndroidValueUnits()[constIdx] + ")");
+				this.constantValueViews[constIdx].setText(Float.toString(sensorType.getDefaultValues()[constIdx]));
+				this.constantValueViews[constIdx].setKeyListener(DigitsKeyListener.getInstance(true, true));
+			}
+
+			//this.delayView = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_delay);
+			//this.delayDaysView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_delay_days);
+			//this.delayHoursView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_delay_hours);
+			//this.delayMinutesView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_delay_minutes);
+			//this.delaySecondsView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_delay_seconds);
+			//this.delayMillisecondsView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_delay_milliseconds);
+
+			this.perturbView = (ViewGroup) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb);
+			this.perturbDistributionView = (Spinner) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb_distribution);
+			this.perturbMeanView = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb_mean);
+			this.perturbMeanView.setKeyListener(DigitsKeyListener.getInstance(true, true));
+			this.perturbVarianceView = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb_variance);
+			this.perturbVarianceView.setKeyListener(DigitsKeyListener.getInstance(true, true));
+			this.perturbMinView = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb_min);
+			this.perturbMinView.setKeyListener(DigitsKeyListener.getInstance(true, true));
+			this.perturbMaxView = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb_max);
+			this.perturbMaxView.setKeyListener(DigitsKeyListener.getInstance(true, true));
+			this.perturbLambdaView = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb_lambda);
+			this.perturbLambdaView.setKeyListener(DigitsKeyListener.getInstance(true, true));
+
+			timingView = (ViewGroup) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing);
+			dayOfWeekViews = new CheckBox[7];
+			dayOfWeekViews[0] = (CheckBox) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_sunday);
+			dayOfWeekViews[1] = (CheckBox) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_monday);
+			dayOfWeekViews[2] = (CheckBox) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_tuesday);
+			dayOfWeekViews[3] = (CheckBox) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_wednesday);
+			dayOfWeekViews[4] = (CheckBox) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_thursday);
+			dayOfWeekViews[5] = (CheckBox) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_friday);
+			dayOfWeekViews[6] = (CheckBox) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_saturday);
+			fromHourView = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_fromhour);
+			toHourView = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_tohour);
+			fromMinuteView = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_fromminutes);
+			toMinuteView = (TextView) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_tominutes);
+			
+			locationView = (ViewGroup) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_location);
+			radiusSpinner = (Spinner) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_location_spinner_radius);
+			tagSpinner = (Spinner) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_location_spinner_tag);
+			setUpLocationSpinner();
+			
+			externalView = (ViewGroup) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_external);
+			externalSpinner = (Spinner) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_external_spinner);
+			setUpExternalSpinner();
+			
+			
+			ruleActionView = (Spinner) editView.findViewById(R.id.fragment_app_detail_sensor_action_select);
+			
 			ruleActionView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 				public void onItemSelected (AdapterView<?> parent, View view, int position, long id) {
 					for (int constIdx = 0; constIdx < MAX_CONSTANTS; constIdx++) {
@@ -267,6 +353,34 @@ public class AppDetailFragment extends Fragment {
 				public void onNothingSelected (AdapterView<?> parent) {
 				}
 			});
+				
+			ruleActionButton = (Button) ruleView.findViewById(R.id.fragment_app_detail_sensor_add);
+			ruleActionButton.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Log.i("AppDetailFragment", "add button clicked");		
+					AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+					dialog.setView(editView);
+					dialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							
+						}
+						
+					});
+					dialog.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							
+						}
+						
+					});
+					dialog.show();
+				}
+				
+			});
 		} // }}}
 		
 		private void setUpLocationSpinner() {
@@ -295,8 +409,8 @@ public class AppDetailFragment extends Fragment {
 		}
 		
 		private void setupLocationConstant() {
-			constantLocationView = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant_location);
-			constantLocationSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant_location_spinner);
+			constantLocationView = (ViewGroup) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant_location);
+			constantLocationSpinner = (Spinner) editView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant_location_spinner);
 			
 			List<String> listloc = new ArrayList<String>();
 			listloc.add("None");
@@ -331,97 +445,15 @@ public class AppDetailFragment extends Fragment {
 			this.ruleView = ruleView;
 
 			TextView name = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_name);
-			//TextView count = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_count);
-
 			name.setText(sensorType.getName() + "\n\tUse count: " + app.getSensorCount(sensorType.getAndroidId()));
-			
-			Log.i("frag", "sensorid=" + sensorType.getAndroidId());
-			Log.i("frag", "sensorname=" + sensorType.getName());
-			Log.i("frag", "constantNum=" + sensorType.getAndroidValueNames().length);
-
-			// set up this action's arguments {{{
-
-			this.constantViews = new ViewGroup[MAX_CONSTANTS];
-			this.constantNameViews = new TextView[MAX_CONSTANTS];
-			this.constantUnitViews = new TextView[MAX_CONSTANTS];
-			this.constantValueViews = new TextView[MAX_CONSTANTS];
-
-			this.constantViews[0] = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant0);
-			this.constantViews[1] = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant1);
-			this.constantViews[2] = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant2);
-			this.constantViews[3] = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant3);
-			this.constantViews[4] = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant4);
-			this.constantNameViews[0] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant0_name);
-			this.constantNameViews[1] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant1_name);
-			this.constantNameViews[2] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant2_name);
-			this.constantNameViews[3] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant3_name);
-			this.constantNameViews[4] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant4_name);
-			this.constantUnitViews[0] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant0_unit);
-			this.constantUnitViews[1] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant1_unit);
-			this.constantUnitViews[2] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant2_unit);
-			this.constantUnitViews[3] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant3_unit);
-			this.constantUnitViews[4] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant4_unit);
-			this.constantValueViews[0] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant0_value);
-			this.constantValueViews[1] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant1_value);
-			this.constantValueViews[2] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant2_value);
-			this.constantValueViews[3] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant3_value);
-			this.constantValueViews[4] = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant4_value);
-
-			// set up constant names and units as well as default values... also handle setting types
-			for (int constIdx = 0; constIdx < MAX_CONSTANTS && constIdx < sensorType.getAndroidValueNames().length; constIdx++) {
-				this.constantNameViews[constIdx].setText(sensorType.getAndroidValueNames()[constIdx] + ":");
-				this.constantUnitViews[constIdx].setText("(" + sensorType.getAndroidValueUnits()[constIdx] + ")");
-				this.constantValueViews[constIdx].setText(Float.toString(sensorType.getDefaultValues()[constIdx]));
-				this.constantValueViews[constIdx].setKeyListener(DigitsKeyListener.getInstance(true, true));
-			}
-
-			//this.delayView = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_delay);
-			//this.delayDaysView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_delay_days);
-			//this.delayHoursView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_delay_hours);
-			//this.delayMinutesView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_delay_minutes);
-			//this.delaySecondsView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_delay_seconds);
-			//this.delayMillisecondsView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_delay_milliseconds);
-
-			this.perturbView = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb);
-			this.perturbDistributionView = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb_distribution);
-			this.perturbMeanView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb_mean);
-			this.perturbMeanView.setKeyListener(DigitsKeyListener.getInstance(true, true));
-			this.perturbVarianceView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb_variance);
-			this.perturbVarianceView.setKeyListener(DigitsKeyListener.getInstance(true, true));
-			this.perturbMinView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb_min);
-			this.perturbMinView.setKeyListener(DigitsKeyListener.getInstance(true, true));
-			this.perturbMaxView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb_max);
-			this.perturbMaxView.setKeyListener(DigitsKeyListener.getInstance(true, true));
-			this.perturbLambdaView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_perturb_lambda);
-			this.perturbLambdaView.setKeyListener(DigitsKeyListener.getInstance(true, true));
-
-			timingView = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing);
-			dayOfWeekViews = new CheckBox[7];
-			dayOfWeekViews[0] = (CheckBox) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_sunday);
-			dayOfWeekViews[1] = (CheckBox) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_monday);
-			dayOfWeekViews[2] = (CheckBox) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_tuesday);
-			dayOfWeekViews[3] = (CheckBox) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_wednesday);
-			dayOfWeekViews[4] = (CheckBox) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_thursday);
-			dayOfWeekViews[5] = (CheckBox) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_friday);
-			dayOfWeekViews[6] = (CheckBox) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_saturday);
-			fromHourView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_fromhour);
-			toHourView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_tohour);
-			fromMinuteView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_fromminutes);
-			toMinuteView = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_timing_tominutes);
-			
-			locationView = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_location);
-			radiusSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_location_spinner_radius);
-			tagSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_location_spinner_tag);
-			setUpLocationSpinner();
-			
-			externalView = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_external);
-			externalSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_external_spinner);
-			setUpExternalSpinner();
-			// }}}
-
-			setupActionSpinner();
+			setupActionButton();
 			setupPerturbSpinner();
 			setupLocationConstant();
+			
+//			Log.i("frag", "sensorid=" + sensorType.getAndroidId());
+//			Log.i("frag", "sensorname=" + sensorType.getName());
+//			Log.i("frag", "constantNum=" + sensorType.getAndroidValueNames().length);
+//
 		} // }}}
 
 		protected FirewallConfigMessage.Rule genRule () { // {{{
@@ -854,7 +886,7 @@ public class AppDetailFragment extends Fragment {
 			sensorViews.addView(emptyMsg);
 
 			// hide the apply button
-			((Button) rootView.findViewById(R.id.fragment_app_detail_apply_sensors)).setVisibility(View.GONE);
+			//((Button) rootView.findViewById(R.id.fragment_app_detail_apply_sensors)).setVisibility(View.GONE);
 		}
 
 		return sensorViews;
@@ -892,12 +924,12 @@ public class AppDetailFragment extends Fragment {
 				fwMgr.setFirewallConfig(base64Data);
 	} // }}}
 	private void setupApplyButtons () { // {{{
-		((Button) rootView.findViewById(R.id.fragment_app_detail_apply_sensors)).setOnClickListener(new View.OnClickListener () {
-			public void onClick (View v) {
-				sendFCMData(genProtobuf64());
-				getActivity().finish();
-			}
-		});
+//		((Button) rootView.findViewById(R.id.fragment_app_detail_apply_sensors)).setOnClickListener(new View.OnClickListener () {
+//			public void onClick (View v) {
+//				sendFCMData(genProtobuf64());
+//				getActivity().finish();
+//			}
+//		});
 
 		// the "inference" apply button really just calls the "sensor" apply button... there are two buttons simply because the layout requires it
 		((Button) rootView.findViewById(R.id.fragment_app_detail_apply_inferences)).setOnClickListener(new View.OnClickListener () {

@@ -108,25 +108,19 @@
 			android:scrollbars="vertical"
 			android:visibility="gone"
 		>
+			
+		    <View
+				android:layout_width="fill_parent"
+				android:layout_height="1dip"
+				android:background="#33000000"
+			/>
 			<LinearLayout
+				android:id="@+id/fragment_app_detail_sensors"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:orientation="vertical"
-			>
-				<LinearLayout
-					android:id="@+id/fragment_app_detail_sensors"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="vertical"
-				/>
+			/>
 
-				<Button
-					android:id="@+id/fragment_app_detail_apply_sensors"
-					android:layout_width="match_parent"
-					android:layout_height="64dp"
-					android:text="Apply"
-				/>
-			</LinearLayout>
 		</ScrollView>
 		<!-- }}} -->
 	</LinearLayout>
