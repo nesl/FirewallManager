@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:paddingTop="12dp"
-	android:paddingBottom="20dp"
+	android:paddingTop="5dp"
+	android:paddingBottom="5dp"
 	android:orientation="vertical"
 >
 
@@ -41,16 +41,10 @@
 	</LinearLayout>
 	
 	<LinearLayout
-		android:id="@+id/fragment_app_detail_actions"
+		android:id="@+id/fragment_app_detail_rules"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="vertical"
-	/>
-	
-	<View
-		android:layout_width="fill_parent"
-		android:layout_height="1dip"
-		android:background="#33000000"
 	/>
 
 </LinearLayout>

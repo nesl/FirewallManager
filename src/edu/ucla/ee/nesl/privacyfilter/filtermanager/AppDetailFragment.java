@@ -215,6 +215,7 @@ public class AppDetailFragment extends Fragment {
 				}
 			});
 		} // }}}
+		
 		private void setupActionButton () { // {{{
 			LayoutInflater sensorInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			editView = sensorInflater.inflate(R.layout.fragment_app_detail_sensor_edit, null);
@@ -369,7 +370,7 @@ public class AppDetailFragment extends Fragment {
 						}
 						
 					});
-					dialog.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+					dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
@@ -446,6 +447,30 @@ public class AppDetailFragment extends Fragment {
 
 			TextView name = (TextView) ruleView.findViewById(R.id.fragment_app_detail_sensor_name);
 			name.setText(sensorType.getName() + "\n\tUse count: " + app.getSensorCount(sensorType.getAndroidId()));
+			
+			
+			ViewGroup ruleViews = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_rules);
+			LayoutInflater ruleInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			
+			if (sensorType.getAndroidId() == 1) {
+				ViewGroup rule1 = (ViewGroup) ruleInflater.inflate(R.layout.fragment_app_detail_sensor_rule, ruleViews, false);
+				TextView desc1 = (TextView) rule1.findViewById(R.id.fragment_app_detail_sensor_rule_desc);
+				desc1.setText("Supress:\n\tOn Sat, Sun; From 00:00 to 23:59;\n\tWithin 1mile of Hospital;");
+				ruleViews.addView(rule1);
+				
+				ViewGroup rule2 = (ViewGroup) ruleInflater.inflate(R.layout.fragment_app_detail_sensor_rule, ruleViews, false);
+				TextView desc2 = (TextView) rule2.findViewById(R.id.fragment_app_detail_sensor_rule_desc);
+				desc2.setText("Replace with x=10.0, y=0.0, z=0.0: \n\tOn all days; From 00:00 to 23:59;\n\tExternal context: driving;");
+				ruleViews.addView(rule2);
+			}
+			else {
+				ViewGroup rule1 = (ViewGroup) ruleInflater.inflate(R.layout.fragment_app_detail_sensor_rule, ruleViews, false);
+				TextView desc1 = (TextView) rule1.findViewById(R.id.fragment_app_detail_sensor_rule_desc);
+				desc1.setText("Replace with Home:\n\tOn Sat, Sun; From 00:00 to 23:59;\n\tWithin 1mile of Work;\n\tExternal context: Indoor;");
+				ruleViews.addView(rule1);
+			}
+
+			
 			setupActionButton();
 			setupPerturbSpinner();
 			setupLocationConstant();

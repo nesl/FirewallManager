@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Firewall Manager</string>
-    <string name="title_app_detail">App Detail</string>
-    <string name="title_app_detail_tab">App Detail</string>
+    <string name="title_app_detail">Rule Configurator</string>
 
 		<string name="std_line_height">40sp</string>
 
@@ -37,8 +36,8 @@
     <string name="seconds">Secs</string>
     <string name="milliseconds">ms</string>
 
-		<string name="fragment_app_detail_viewtoggle_showinginferences"><u>Inf</u>/Sensor</string>
-		<string name="fragment_app_detail_viewtoggle_showingsensors">Inf/<u>Sensor</u></string>
+		<string name="fragment_app_detail_viewtoggle_showinginferences">Semantic</string>
+		<string name="fragment_app_detail_viewtoggle_showingsensors">Advanced</string>
 
 		<string name="fragment_app_detail_inference_action_allow"><font fgcolor="#ffff0000"><b>Allowed</b></font></string>
 		<string name="fragment_app_detail_inference_action_disallow">Blocked</string>

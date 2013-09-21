@@ -109,17 +109,23 @@
 			android:visibility="gone"
 		>
 			
-		    <View
-				android:layout_width="fill_parent"
-				android:layout_height="1dip"
-				android:background="#33000000"
-			/>
-			<LinearLayout
-				android:id="@+id/fragment_app_detail_sensors"
+		  	<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:orientation="vertical"
-			/>
+			>
+			    <View
+					android:layout_width="fill_parent"
+					android:layout_height="1dip"
+					android:background="#33000000"
+				/>
+				<LinearLayout
+					android:id="@+id/fragment_app_detail_sensors"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+				/>
+			</LinearLayout>
 
 		</ScrollView>
 		<!-- }}} -->

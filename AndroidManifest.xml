@@ -40,7 +40,7 @@
         </activity>
         <activity
             android:name="edu.ucla.ee.nesl.privacyfilter.filtermanager.AppDetailActivityWithMap"
-            android:label="@string/title_app_detail_tab" 
+            android:label="@string/title_app_detail" 
             android:parentActivityName="edu.ucla.ee.nesl.privacyfilter.filtermanager.AppListActivity"
             android:windowSoftInputMode="stateUnchanged">
             <meta-data
