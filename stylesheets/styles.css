@@ -356,8 +356,10 @@ footer p + p {
 }
 
 #links {
-	text-align: center;
+	text-align: left;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 #links a + a {
-	padding-left: 40px;
+	padding-left: 20px;
 }
