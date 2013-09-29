@@ -9,8 +9,8 @@
 			<!-- these names can be changed as long as the order is preserved -->
 			<item>Normal</item>
 			<item>Suppress</item>
-			<item>Replace</item> <!-- aka constant value -->
-			<item>Playback</item> <!-- this action has been removed-->
+			<item>Constant</item> <!-- aka constant value -->
+		<!--	<item>Playback</item>  this action has been removed-->
 			<item>Perturb</item> <!-- aka perturb -->
 		</string-array>
 
@@ -37,7 +37,7 @@
     <string name="milliseconds">ms</string>
 
 		<string name="fragment_app_detail_viewtoggle_showinginferences">Semantic</string>
-		<string name="fragment_app_detail_viewtoggle_showingsensors">Advanced</string>
+		<string name="fragment_app_detail_viewtoggle_showingsensors">Direct</string>
 
 		<string name="fragment_app_detail_inference_action_allow"><font fgcolor="#ffff0000"><b>Allowed</b></font></string>
 		<string name="fragment_app_detail_inference_action_disallow">Blocked</string>
