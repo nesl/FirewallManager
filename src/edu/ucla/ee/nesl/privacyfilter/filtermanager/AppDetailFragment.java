@@ -588,6 +588,8 @@ public class AppDetailFragment extends Fragment {
 			state.put("timing_fromminute", fromMinuteView.getText().toString());
 			state.put("timing_tohour", toHourView.getText().toString());
 			state.put("timing_tominute", toMinuteView.getText().toString());
+			
+			state.put("constant_index", constantLocationSpinner.getSelectedItemPosition());
 
 			return state;
 		} // }}}
@@ -618,6 +620,7 @@ public class AppDetailFragment extends Fragment {
 			fromMinuteView.setText(state.getString("timing_fromminute"));
 			toHourView.setText(state.getString("timing_tohour"));
 			toMinuteView.setText(state.getString("timing_tominute"));
+			constantLocationSpinner.setSelection(state.getInt("constant_index"));
 		} // }}}
 
 		public void makeAllowed () { // {{{

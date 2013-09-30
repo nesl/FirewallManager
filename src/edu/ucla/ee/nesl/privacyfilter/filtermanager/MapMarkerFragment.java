@@ -84,6 +84,7 @@ public class MapMarkerFragment extends Fragment {
 								//mTag.add(newll);
 								//labels.add(value);
 								AppListActivity.mapMarkers.put(value, newll);
+								AppListActivity.updateState();
 								mMarker.add(map.addMarker(new MarkerOptions().position(newll).draggable(true).visible(true).title(value)));
 								Log.d("MarkerMap", "add new entry " + value + " lat=" + newll.latitude + " lon=" + newll.longitude);
 								//addItemsOnPlaceSpinner();
