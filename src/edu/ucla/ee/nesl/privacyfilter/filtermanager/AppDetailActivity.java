@@ -16,6 +16,7 @@ import android.view.MenuItem;
  */
 public class AppDetailActivity extends FragmentActivity {
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -1,5 +1,9 @@
 package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 
+import java.util.HashMap;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,6 +32,7 @@ public class AppListActivity extends FragmentActivity
 		implements AppListFragment.Callbacks {
 
 	public static final boolean CLEAR_PREFS_ON_STARTUP = false;
+	public static HashMap<String, LatLng> mapMarkers;
 
 	/**
 	 * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -39,6 +44,10 @@ public class AppListActivity extends FragmentActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_app_list);
+		
+		mapMarkers = new HashMap<String, LatLng>();
+		mapMarkers.put("Home", new LatLng(34.049351, -118.423852));
+		mapMarkers.put("Work", new LatLng(34.058351, -118.438852));
 
 		if (CLEAR_PREFS_ON_STARTUP) {
 			SharedPreferences prefs = getSharedPreferences("app_gui_states", MODE_PRIVATE);

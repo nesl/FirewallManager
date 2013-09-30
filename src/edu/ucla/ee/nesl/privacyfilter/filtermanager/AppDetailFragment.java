@@ -5,6 +5,7 @@ package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,8 +31,11 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.algo.InferenceSensorMapper;
-import edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessage;
+import edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.AppFilterData;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.AppId;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.Inference;
@@ -47,6 +51,7 @@ import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.SensorType;
  */
 public class AppDetailFragment extends Fragment {
 	private Context context;
+	
 	// Android boilerplate {{{
 
 	public Context getContext() {
@@ -67,6 +72,7 @@ public class AppDetailFragment extends Fragment {
 	 * fragment (e.g. upon screen orientation changes).
 	 */
 	public AppDetailFragment() {
+		
 	}
 
 	// }}}
@@ -105,24 +111,24 @@ public class AppDetailFragment extends Fragment {
 
 		// Protobuf enums {{{
 
-		//private final FirewallConfigMessage.Action.ActionType[] PROTOBUF_ACTIONS = {
-		//	FirewallConfigMessage.Action.ActionType.ACTION_PASSTHROUGH,
-		//	FirewallConfigMessage.Action.ActionType.ACTION_SUPPRESS,
-		//	FirewallConfigMessage.Action.ActionType.ACTION_CONSTANT,
-		//	FirewallConfigMessage.Action.ActionType.ACTION_DELAY,
-		//	FirewallConfigMessage.Action.ActionType.ACTION_PERTURB,
+		//private final FirewallConfigMessages.Action.ActionType[] PROTOBUF_ACTIONS = {
+		//	FirewallConfigMessages.Action.ActionType.ACTION_PASSTHROUGH,
+		//	FirewallConfigMessages.Action.ActionType.ACTION_SUPPRESS,
+		//	FirewallConfigMessages.Action.ActionType.ACTION_CONSTANT,
+		//	FirewallConfigMessages.Action.ActionType.ACTION_DELAY,
+		//	FirewallConfigMessages.Action.ActionType.ACTION_PERTURB,
 		//};
-		private final FirewallConfigMessage.Action.ActionType[] PROTOBUF_ACTIONS = {
-			FirewallConfigMessage.Action.ActionType.ACTION_PASSTHROUGH,
-			FirewallConfigMessage.Action.ActionType.ACTION_SUPPRESS,
-			FirewallConfigMessage.Action.ActionType.ACTION_CONSTANT,
-			FirewallConfigMessage.Action.ActionType.ACTION_PERTURB,
+		private final FirewallConfigMessages.Action.ActionType[] PROTOBUF_ACTIONS = {
+			FirewallConfigMessages.Action.ActionType.ACTION_PASSTHROUGH,
+			FirewallConfigMessages.Action.ActionType.ACTION_SUPPRESS,
+			FirewallConfigMessages.Action.ActionType.ACTION_CONSTANT,
+			FirewallConfigMessages.Action.ActionType.ACTION_PERTURB,
 		};
 
-		private final FirewallConfigMessage.Perturb.DistributionType[] PROTOBUF_DISTRIBUTIONS = {
-			FirewallConfigMessage.Perturb.DistributionType.GAUSSIAN,
-			FirewallConfigMessage.Perturb.DistributionType.UNIFORM,
-			FirewallConfigMessage.Perturb.DistributionType.EXPONENTIAL
+		private final FirewallConfigMessages.Perturb.DistributionType[] PROTOBUF_DISTRIBUTIONS = {
+			FirewallConfigMessages.Perturb.DistributionType.GAUSSIAN,
+			FirewallConfigMessages.Perturb.DistributionType.UNIFORM,
+			FirewallConfigMessages.Perturb.DistributionType.EXPONENTIAL
 		};
 
 		// }}}
@@ -246,16 +252,16 @@ public class AppDetailFragment extends Fragment {
 							locationView.setVisibility(View.VISIBLE);
 							externalView.setVisibility(View.VISIBLE);
 							break;
-						case 3: // delay
-							timingView.setVisibility(View.VISIBLE);
-							locationView.setVisibility(View.VISIBLE);
-							externalView.setVisibility(View.VISIBLE);
-							break;
+//						case 3: // delay
+//							timingView.setVisibility(View.VISIBLE);
+//							locationView.setVisibility(View.VISIBLE);
+//							externalView.setVisibility(View.VISIBLE);
+//							break;
 						//case 4: // perturb
 						//	perturbView.setVisibility(View.VISIBLE);
 						//	timingView.setVisibility(View.VISIBLE);
 						//	break;
-						case 4: // perturb
+						case 3: // perturb
 							perturbView.setVisibility(View.VISIBLE);
 							timingView.setVisibility(View.VISIBLE);
 							locationView.setVisibility(View.VISIBLE);
@@ -279,11 +285,9 @@ public class AppDetailFragment extends Fragment {
 			
 			List<String> listloc = new ArrayList<String>();
 			listloc.add("None");
-			listloc.add("Home");
-			listloc.add("Work");
-			listloc.add("Grocery");
-			listloc.add("Hospital");
-			
+			for (Map.Entry<String, LatLng> entry : AppListActivity.mapMarkers.entrySet()) {
+				listloc.add(entry.getKey());
+			}
 			
 			if (context != null) {
 				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, list);
@@ -299,11 +303,9 @@ public class AppDetailFragment extends Fragment {
 			constantLocationSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant_location_spinner);
 			
 			List<String> listloc = new ArrayList<String>();
-			listloc.add("None");
-			listloc.add("Home");
-			listloc.add("Work");
-			listloc.add("Grocery");
-			listloc.add("Hospital");
+			for (Map.Entry<String, LatLng> entry : AppListActivity.mapMarkers.entrySet()) {
+				listloc.add(entry.getKey());
+			}
 			
 			if (context != null) {				
 				ArrayAdapter<String> dataAdapterLoc = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, listloc);
@@ -424,28 +426,35 @@ public class AppDetailFragment extends Fragment {
 			setupLocationConstant();
 		} // }}}
 
-		protected FirewallConfigMessage.Rule genRule () { // {{{
+		protected FirewallConfigMessages.Rule genRule () { // {{{
 
 			// build param {{{
 
-			FirewallConfigMessage.Param.Builder paramBuilder = FirewallConfigMessage.Param.newBuilder();
+			FirewallConfigMessages.Param.Builder paramBuilder = FirewallConfigMessages.Param.newBuilder();
 
 			// set sensorvalue {{{
 
-			FirewallConfigMessage.SensorValue.Builder svBuilder = FirewallConfigMessage.SensorValue.newBuilder();
+			FirewallConfigMessages.SensorValue.Builder svBuilder = FirewallConfigMessages.SensorValue.newBuilder();
 
-			svBuilder.setScalarVal(str2float((constantValueViews[0].getText())));
-
-			svBuilder.setVecVal(
-				FirewallConfigMessage.VectorValue.newBuilder()
-					.setX(str2float(constantValueViews[0].getText()))
-					.setY(str2float(constantValueViews[1].getText()))
-					.setZ(str2float(constantValueViews[2].getText()))
-					.setTheta(str2float(constantValueViews[3].getText()))
-					.setAccuracy(str2float(constantValueViews[4].getText()))
-					.build()
-			);
-
+			
+			
+			if (sensorType.getAndroidId() == SensorType.GPS_ID) {
+				String label = constantLocationSpinner.getSelectedItem().toString();
+				LatLng ll = AppListActivity.mapMarkers.get(label);
+				svBuilder.setVecVal(FirewallConfigMessages.VectorValue.newBuilder().setLat(ll.latitude).setLon(ll.longitude).build());
+			}
+			else {
+				svBuilder.setVecVal(
+						FirewallConfigMessages.VectorValue.newBuilder()
+							.setX(str2float(constantValueViews[0].getText()))
+							.setY(str2float(constantValueViews[1].getText()))
+							.setZ(str2float(constantValueViews[2].getText()))
+							.setTheta(str2float(constantValueViews[3].getText()))
+							.setAccuracy(str2float(constantValueViews[4].getText()))
+							.build()
+					);
+					svBuilder.setScalarVal(str2float((constantValueViews[0].getText())));
+			}
 			// TODO timestamp is currently unused by the service
 
 			// protobuf's "default" section is being replaced with UI-imposed defaults
@@ -468,7 +477,7 @@ public class AppDetailFragment extends Fragment {
 			// }}}
 			// set perturb data {{{
 
-			FirewallConfigMessage.Perturb.Builder perturbBuilder = FirewallConfigMessage.Perturb.newBuilder();
+			FirewallConfigMessages.Perturb.Builder perturbBuilder = FirewallConfigMessages.Perturb.newBuilder();
 
 			perturbBuilder.setDistType(PROTOBUF_DISTRIBUTIONS[perturbDistributionView.getSelectedItemPosition()]);
 			perturbBuilder.setMean(str2float(perturbMeanView.getText()));
@@ -478,25 +487,25 @@ public class AppDetailFragment extends Fragment {
 			perturbBuilder.setExpParam(str2float(perturbLambdaView.getText()));
 
 			paramBuilder.setPerturb(perturbBuilder.build());
-
+			
 			// }}}
 
-			FirewallConfigMessage.Param param = paramBuilder.build();
+			FirewallConfigMessages.Param param = paramBuilder.build();
 
 			// }}}
 			// build action {{{
 
-			FirewallConfigMessage.Action.Builder actionBuilder = FirewallConfigMessage.Action.newBuilder();
+			FirewallConfigMessages.Action.Builder actionBuilder = FirewallConfigMessages.Action.newBuilder();
 			actionBuilder.setActionType(PROTOBUF_ACTIONS[ruleActionView.getSelectedItemPosition()]);
 
 			actionBuilder.setParam(param);
 
-			FirewallConfigMessage.Action action = actionBuilder.build();
+			FirewallConfigMessages.Action action = actionBuilder.build();
 
 			// }}}
 			// build timing {{{
 
-			FirewallConfigMessage.DateTime.Builder dtBuilder = FirewallConfigMessage.DateTime.newBuilder();
+			FirewallConfigMessages.DateTime.Builder dtBuilder = FirewallConfigMessages.DateTime.newBuilder();
 			for (int dayIdx = 0; dayIdx < 7; dayIdx++) {
 				if (dayOfWeekViews[dayIdx].isChecked()) {
 					dtBuilder.addDayOfWeek(dayIdx);
@@ -520,14 +529,19 @@ public class AppDetailFragment extends Fragment {
 			dtBuilder.setToHr(str2int(toHr));
 			dtBuilder.setToMin(str2int(toMin));
 
-			FirewallConfigMessage.DateTime dt = dtBuilder.build();
+			FirewallConfigMessages.DateTime dt = dtBuilder.build();
 
 			// }}}
 			// build rule {{{
 
-			FirewallConfigMessage.Rule.Builder ruleBuilder = FirewallConfigMessage.Rule.newBuilder();
+			FirewallConfigMessages.Rule.Builder ruleBuilder = FirewallConfigMessages.Rule.newBuilder();
 			ruleBuilder.setRuleName("FILTERMANAGER_RULE" + Integer.toString((new java.util.Random()).nextInt(10000)));
-			ruleBuilder.setSensorType(sensorType.getAndroidId());
+			if (sensorType.getAndroidId() == SensorType.GPS_ID) {
+				ruleBuilder.setSensorType(30);
+			}
+			else{
+				ruleBuilder.setSensorType(sensorType.getAndroidId());
+			}
 			ruleBuilder.setPkgName(app.getApplicationInfo().packageName);
 			ruleBuilder.setPkgUid(app.getApplicationInfo().uid);
 
@@ -782,14 +796,14 @@ public class AppDetailFragment extends Fragment {
 
 	// this method generates a protobuf in base64 string form representing the app
 	public String genProtobuf64 () { // {{{
-		FirewallConfigMessage.FirewallConfig.Builder fwBuilder = FirewallConfigMessage.FirewallConfig.newBuilder();
+		FirewallConfigMessages.FirewallConfig.Builder fwBuilder = FirewallConfigMessages.FirewallConfig.newBuilder();
 		
 		for (int sTypeIdx = 0; sTypeIdx < sensorRules.size(); sTypeIdx++) {
-			FirewallConfigMessage.Rule curRule = sensorRules.get(sTypeIdx).genRule();
+			FirewallConfigMessages.Rule curRule = sensorRules.get(sTypeIdx).genRule();
 			fwBuilder.addRule(curRule);
 		}
 
-		FirewallConfigMessage.FirewallConfig fwConfig = fwBuilder.build();
+		FirewallConfigMessages.FirewallConfig fwConfig = fwBuilder.build();
 
 		String serializedFirewallConfigProto = Base64.encodeToString(fwConfig.toByteArray(), Base64.DEFAULT);
 
@@ -978,6 +992,8 @@ public class AppDetailFragment extends Fragment {
 		((ImageView) rootView.findViewById(R.id.fragment_app_detail_icon)).setImageDrawable(app.getIcon());
 		//((TextView) rootView.findViewById(R.id.fragment_app_detail_subtitle)).setText("Sensors: Acl Gyr Loc Mic");
 
+		
+		
 		setupSensors();
 		setupInferences();
 		setupApplyButtons();

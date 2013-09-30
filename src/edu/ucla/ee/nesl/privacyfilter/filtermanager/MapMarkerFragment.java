@@ -1,21 +1,22 @@
 package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 
 import java.util.ArrayList;
-
+import java.util.Map;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -29,9 +30,9 @@ public class MapMarkerFragment extends Fragment {
 	private MapMarkerFragment fragment;
 	private LatLng newll;
 	private ArrayList<LatLng> mTrace;
-	private ArrayList<LatLng> mTag;
+	//private ArrayList<LatLng> mTag;
 	private ArrayList<Marker> mMarker;
-	private ArrayList<String> labels;
+	//private ArrayList<String> labels;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class MapMarkerFragment extends Fragment {
 		rootView = inflater.inflate(R.layout.fragment_map, container, false);
 		
 		mTrace = new ArrayList<LatLng>();
-		mTag = new ArrayList<LatLng>();
+		//mTag = new ArrayList<LatLng>();
 		mMarker = new ArrayList<Marker>();
 		
 		mTrace.add(new LatLng(34.0222200, -118.423072));
@@ -55,12 +56,12 @@ public class MapMarkerFragment extends Fragment {
 		mTrace.add(new LatLng(34.052351, -118.433172));
 		mTrace.add(new LatLng(34.037322, -118.428132));
 		
-		mTag.add(new LatLng(34.049351, -118.423852));
-		mTag.add(new LatLng(34.058351, -118.438852));
-		
-		labels = new ArrayList<String>();
-		labels.add("Home");
-		labels.add("Work");
+//		mTag.add(new LatLng(34.049351, -118.423852));
+//		mTag.add(new LatLng(34.058351, -118.438852));
+//		
+//		labels = new ArrayList<String>();
+//		labels.add("Home");
+//		labels.add("Work");
 		
 		map = ((SupportMapFragment)this.getActivity().getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 		
@@ -80,9 +81,11 @@ public class MapMarkerFragment extends Fragment {
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
 								String value = input.getText().toString();
-								mTag.add(newll);
-								labels.add(value);
+								//mTag.add(newll);
+								//labels.add(value);
+								AppListActivity.mapMarkers.put(value, newll);
 								mMarker.add(map.addMarker(new MarkerOptions().position(newll).draggable(true).visible(true).title(value)));
+								Log.d("MarkerMap", "add new entry " + value + " lat=" + newll.latitude + " lon=" + newll.longitude);
 								//addItemsOnPlaceSpinner();
 							}
 						});
@@ -118,7 +121,6 @@ public class MapMarkerFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub	
 				synchronized (mMarker) {
 					map.clear();
 					mMarker.clear();
@@ -136,13 +138,11 @@ public class MapMarkerFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				int count = 0;
 				synchronized (mMarker) {
 					map.clear();
 					mMarker.clear();
-					for (LatLng ll:mTag) {
-						mMarker.add(map.addMarker(new MarkerOptions().position(ll).draggable(true).visible(true).title(labels.get(count++))));
+					for (Map.Entry<String, LatLng> entry : AppListActivity.mapMarkers.entrySet()) {
+						mMarker.add(map.addMarker(new MarkerOptions().position(entry.getValue()).draggable(true).visible(true).title(entry.getKey())));
 					}
 					focusOnMarker();
 				}

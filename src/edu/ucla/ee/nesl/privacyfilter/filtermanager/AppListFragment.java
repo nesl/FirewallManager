@@ -1,18 +1,18 @@
 package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
+import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.content.pm.ApplicationInfo;
-
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.AppFilterData;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.AppId;
-
-import java.util.List;
-import java.util.ArrayList;
 
 
 
@@ -87,6 +87,7 @@ public class AppListFragment extends ListFragment {
 
 						// currently only listing non-system-installed apps
 						appFilterDataList.add(new AppFilterData(getActivity(), appInfoList.get(app_idx)));
+						Log.d("List", "App packagename=" + appInfoList.get(app_idx).packageName);
 
 						// TODO: add the actual filter data to each AppFilterData object here
 					}
