@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Firewall Manager</string>
-    <string name="title_app_detail">App Detail</string>
-    <string name="title_app_detail_tab">App Detail</string>
+    <string name="title_app_detail">Rule Config</string>
+    <string name="title_app_detail_tab">Rule Config</string>
 
 		<string name="std_line_height">40sp</string>
 

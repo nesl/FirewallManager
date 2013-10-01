@@ -150,7 +150,7 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
         @Override
         public CharSequence getPageTitle(int position) {
             if (position == 0) {
-            	return "App Detail";
+            	return "Rule Config";
             }
             else if (position == 1) {
             	return "External Context";
