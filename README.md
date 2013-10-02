@@ -1,4 +1,6 @@
-FilterManager
+FirewallManager
 =============
+Front end app for ipShield.
 
-privacy firewall manager
+Implemented semantic rule configurator, rule recommender, and 
+direct rule configurator.
