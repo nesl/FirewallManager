@@ -2,6 +2,7 @@ package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 
 import java.util.ArrayList;
 import java.util.Map;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -11,8 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -34,6 +39,10 @@ public class MapMarkerFragment extends Fragment {
 	private ArrayList<Marker> mMarker;
 	//private ArrayList<String> labels;
 	
+	private ListView listView;
+    private ArrayAdapter<String> adapter;
+    static int count = 0;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,7 +52,6 @@ public class MapMarkerFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		//super.onViewCreated(container, savedInstanceState);
-		
 		rootView = inflater.inflate(R.layout.fragment_map, container, false);
 		
 		mTrace = new ArrayList<LatLng>();
@@ -62,6 +70,24 @@ public class MapMarkerFragment extends Fragment {
 //		labels = new ArrayList<String>();
 //		labels.add("Home");
 //		labels.add("Work");
+		
+		listView = (ListView) this.getActivity().findViewById(R.id.loc_list);
+		adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1);
+		listView.setAdapter(adapter);
+		
+		listView.setClickable(true);
+		listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				Object o = listView.getItemAtPosition(arg2);
+				listView.removeViewAt(arg2);
+				adapter.remove((String) o);
+				count--;
+				return true;
+			}
+		});
 		
 		map = ((SupportMapFragment)this.getActivity().getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 		
@@ -88,6 +114,9 @@ public class MapMarkerFragment extends Fragment {
 								mMarker.add(map.addMarker(new MarkerOptions().position(newll).draggable(true).visible(true).title(value)));
 								Log.d("MarkerMap", "add new entry " + value + " lat=" + newll.latitude + " lon=" + newll.longitude);
 								//addItemsOnPlaceSpinner();
+								count++;
+								adapter.add("Place #" + count + "name= " + value + " lat=" + newll.latitude + " lon=" + newll.longitude);
+								adapter.notifyDataSetChanged();
 							}
 						});
 
