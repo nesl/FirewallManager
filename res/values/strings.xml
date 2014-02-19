@@ -42,4 +42,6 @@
 		<string name="fragment_app_detail_inference_action_allow"><font fgcolor="#ffff0000"><b>Allowed</b></font></string>
 		<string name="fragment_app_detail_inference_action_disallow">Blocked</string>
 		<string name="percentage">\tPriority:</string>
+		<string name="map_clear">Clear</string>
+		<string name="map_save">Save</string>
 </resources>
