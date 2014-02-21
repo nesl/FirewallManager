@@ -1,6 +1,7 @@
 package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -29,17 +30,19 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import edu.ucla.ee.nesl.privacyfilter.trace.TraceMap;
+
 public class MapMarkerFragment extends Fragment {
 	private View rootView;
 	private Button button1, button2;
 	private GoogleMap map;
 	private MapMarkerFragment fragment;
 	private LatLng newll;
-	private ArrayList<LatLng> mTrace;
+//	private ArrayList<LatLng> mTrace;
 	private ArrayList<Marker> mMarker;
 	private ArrayList<Polyline> mLine;
-	//private ArrayList<String> labels;
-	//private ArrayList<LatLng> mTag;
+	private ArrayList<String> mLabel;
+	
 	
 	private ListView listView;
     private ArrayAdapter<String> mAdapter;
@@ -57,20 +60,19 @@ public class MapMarkerFragment extends Fragment {
 		//super.onViewCreated(container, savedInstanceState);
 		rootView = inflater.inflate(R.layout.fragment_map, container, false);
 		
-		mTrace = new ArrayList<LatLng>();
-		//mTag = new ArrayList<LatLng>();
+//		mTrace = new ArrayList<LatLng>();
 		mMarker = new ArrayList<Marker>();
 		mLine = new ArrayList<Polyline>();
+		mLabel = new ArrayList<String>();
+//		mTag = new ArrayList<LatLng>();
 		
-		mTrace.add(new LatLng(34.0222200, -118.423072));
-		mTrace.add(new LatLng(34.037351, -118.442852));
-		mTrace.add(new LatLng(34.069351, -118.445152));
-		mTrace.add(new LatLng(34.052351, -118.433172));
-		mTrace.add(new LatLng(34.037322, -118.428132));
-		
+//		mTrace.add(new LatLng(34.0222200, -118.423072));
+//		mTrace.add(new LatLng(34.037351, -118.442852));
+//		mTrace.add(new LatLng(34.069351, -118.445152));
+//		mTrace.add(new LatLng(34.052351, -118.433172));
+//		mTrace.add(new LatLng(34.037322, -118.428132));		
 //		mTag.add(new LatLng(34.049351, -118.423852));
-//		mTag.add(new LatLng(34.058351, -118.438852));
-//		
+//		mTag.add(new LatLng(34.058351, -118.438852));		
 //		labels = new ArrayList<String>();
 //		labels.add("Home");
 //		labels.add("Work");
@@ -142,6 +144,7 @@ public class MapMarkerFragment extends Fragment {
 								}
 								//addItemsOnPlaceSpinner();
 								count++;
+								mLabel.add(value);
 								mAdapter.add("Place #" + count + "\nName= " + value + "\nLat=" + newll.latitude + "\nLon=" + newll.longitude);
 								mAdapter.notifyDataSetChanged();
 							}
@@ -163,16 +166,6 @@ public class MapMarkerFragment extends Fragment {
 	}
 	
 	private void focusOnMarker() {
-//		LatLngBounds.Builder builder = new LatLngBounds.Builder();
-////		for (Marker m:mMarker) {
-////			builder.include(m.getPosition());
-////		}
-//		builder.include(new LatLng(34.0722, -118.4441));
-//		builder.include(new LatLng(34.037322, -118.428132));
-//		LatLngBounds bounds = builder.build();
-//		int padding = 10; // offset from edges of the map in pixels
-//		CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-//		map.animateCamera(cu);
 		CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(34.0722, -118.4441));
 		CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
 
@@ -187,12 +180,35 @@ public class MapMarkerFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				synchronized (mMarker) {
-//					map.clear();
-//					mMarker.clear();
-//					for (LatLng ll:mTrace) {
-//						mMarker.add(map.addMarker(new MarkerOptions().position(ll).draggable(true).visible(true)));
-//					}
-//					focusOnMarker();
+					AlertDialog.Builder alert = new AlertDialog.Builder(fragment.getActivity());
+
+					alert.setTitle("Save Trace");
+					alert.setMessage("Please name this new trace:");
+
+					final EditText input = new EditText(fragment.getActivity());
+					alert.setView(input);
+
+					alert.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							String value = input.getText().toString();
+							TraceMap.addPath(mLabel, value);
+							AlertDialog.Builder saveAlert  = new AlertDialog.Builder(fragment.getActivity());                      
+						    saveAlert.setTitle("Path saved"); 
+						    saveAlert.setMessage("The real path is saved as " + value
+						    		+ ",\nand the fake path is saved as " + value + "_fake"); 
+						    saveAlert.setPositiveButton("OK", null);
+						    saveAlert.setCancelable(false);
+						    saveAlert.create().show();
+						}
+					});
+
+					alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							// Cancelled.
+						}
+					});
+					
+					alert.show();
 				}
 			}
 			
@@ -203,16 +219,17 @@ public class MapMarkerFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				synchronized (mMarker) {
-					map.clear();
-					mMarker.clear();
-					mLine.clear();
-					mAdapter.clear();
-					focusOnMarker();
-//					for (Map.Entry<String, LatLng> entry : AppListActivity.mapMarkers.entrySet()) {
-//						mMarker.add(map.addMarker(new MarkerOptions().position(entry.getValue()).draggable(true).visible(true).title(entry.getKey())));
-//					}
-//					focusOnMarker();
+				synchronized (mAdapter) {
+					synchronized (mLine) {
+						synchronized (mMarker) {
+							map.clear();
+							mMarker.clear();
+							mLine.clear();
+							mAdapter.clear();
+							mLabel.clear();
+							focusOnMarker();
+						}
+					}
 				}
 			}
 			
