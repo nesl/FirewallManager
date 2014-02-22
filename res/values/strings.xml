@@ -11,7 +11,8 @@
 			<item>Normal</item>
 			<item>Suppress</item>
 			<item>Constant</item> <!-- aka constant value -->
-			<item>Perturb</item> <!-- aka perturb -->
+			<item>Playback</item> <!-- aka perturb -->
+			<item >Perturb</item>
 		</string-array>
 
 		<string name="constant_max_length">11</string>

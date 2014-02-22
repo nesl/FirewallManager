@@ -41,6 +41,7 @@ import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.AppId;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.Inference;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.InferenceMethod;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.SensorType;
+import edu.ucla.ee.nesl.privacyfilter.trace.TraceMap;
 // }}}
 
 /**
@@ -147,13 +148,9 @@ public class AppDetailFragment extends Fragment {
 		
 		private ViewGroup constantLocationView;
 		private Spinner constantLocationSpinner;
-
-		//private ViewGroup delayView;
-		//private TextView delayDaysView;
-		//private TextView delayHoursView;
-		//private TextView delayMinutesView;
-		//private TextView delaySecondsView;
-		//private TextView delayMillisecondsView;
+		
+		private ViewGroup playbackView;
+		private Spinner playbackSpinner;
 
 		private ViewGroup perturbView;
 		private Spinner perturbDistributionView;
@@ -224,7 +221,7 @@ public class AppDetailFragment extends Fragment {
 					for (int constIdx = 0; constIdx < MAX_CONSTANTS; constIdx++) {
 						constantViews[constIdx].setVisibility(View.GONE);
 					}
-					//delayView.setVisibility(View.GONE);
+					playbackView.setVisibility(View.GONE);
 					perturbView.setVisibility(View.GONE);
 					timingView.setVisibility(View.GONE);
 					locationView.setVisibility(View.GONE);
@@ -252,16 +249,13 @@ public class AppDetailFragment extends Fragment {
 							locationView.setVisibility(View.VISIBLE);
 							externalView.setVisibility(View.VISIBLE);
 							break;
-//						case 3: // delay
-//							timingView.setVisibility(View.VISIBLE);
-//							locationView.setVisibility(View.VISIBLE);
-//							externalView.setVisibility(View.VISIBLE);
-//							break;
-						//case 4: // perturb
-						//	perturbView.setVisibility(View.VISIBLE);
-						//	timingView.setVisibility(View.VISIBLE);
-						//	break;
-						case 3: // perturb
+						case 3: // playback
+							playbackView.setVisibility(View.VISIBLE);
+							timingView.setVisibility(View.VISIBLE);
+							locationView.setVisibility(View.VISIBLE);
+							externalView.setVisibility(View.VISIBLE);
+							break;
+						case 4: // perturb
 							perturbView.setVisibility(View.VISIBLE);
 							timingView.setVisibility(View.VISIBLE);
 							locationView.setVisibility(View.VISIBLE);
@@ -326,6 +320,14 @@ public class AppDetailFragment extends Fragment {
 			if (context != null) {
 				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, list);
 				externalSpinner.setAdapter(dataAdapter);
+			}
+		}
+		
+		private void setUpPlaybackSpinner() {
+			List<String> list = new ArrayList<String>(TraceMap.getNameList());			
+			if (context != null) {
+				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, list);
+				playbackSpinner.setAdapter(dataAdapter);
 			}
 		}
 
@@ -420,10 +422,15 @@ public class AppDetailFragment extends Fragment {
 			externalSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_external_spinner);
 			setUpExternalSpinner();
 			// }}}
+			
+			playbackView = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_playback);
+			playbackSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_playback_spinner);
+			setUpPlaybackSpinner();
 
 			setupActionSpinner();
 			setupPerturbSpinner();
 			setupLocationConstant();
+
 		} // }}}
 
 		protected FirewallConfigMessages.Rule genRule () { // {{{

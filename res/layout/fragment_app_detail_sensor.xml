@@ -681,6 +681,28 @@
 			
 		</LinearLayout>
 		
+	    <LinearLayout
+			android:id="@+id/fragment_app_detail_sensor_action_arguments_playback"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingTop="18dp"
+			android:orientation="vertical"
+			android:visibility="gone" >
+			
+		    <TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Choose Trace to Play:"
+				android:textColor = "#ff0000cc"
+			/>
+		    			
+			<Spinner
+		        android:id="@+id/fragment_app_detail_sensor_action_arguments_playback_spinner"
+		        android:layout_width="wrap_content"
+		        android:paddingLeft="2dp"
+		        android:layout_height="wrap_content" />				
+		</LinearLayout>
+		
 	</LinearLayout>
 
 	<!-- }}} -->

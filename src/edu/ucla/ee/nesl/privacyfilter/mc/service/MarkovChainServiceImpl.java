@@ -92,11 +92,11 @@ public class MarkovChainServiceImpl implements MarkovChainService {
     }
 
     public Integer[] findAlternativePath(Integer[] actualPath) {
-        Integer[] alternativePath = new Integer[actualPath.length];
+        Integer[] alternativePath = new Integer[Utils.TOTAL_TIME_SLOT];
         alternativePath[1]=actualPath[1];
         System.out.println(Utils.TOTAL_TIME_SLOT);
         for (int t = 2; t < Utils.TOTAL_TIME_SLOT; t++) {
-            int currentNode = actualPath[t];
+            int currentNode = t < actualPath.length ? actualPath[t] : Integer.valueOf(0);
             if (sensitiveStates.sensitiveNodeInt[currentNode][t] == 1) {
                 alternativePath[t] = getSafeNode(alternativePath[t - 1], currentNode, t);
 
