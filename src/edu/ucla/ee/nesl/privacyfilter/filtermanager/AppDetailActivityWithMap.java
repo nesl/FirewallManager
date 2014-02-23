@@ -16,6 +16,7 @@
 
 package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 
+import edu.ucla.ee.nesl.privacyfilter.trace.TraceMap;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -32,8 +33,8 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
 	
 	private static AppDetailActivityWithMap activity;
 	private static AppDetailFragment fragment0 = null;
-//	private static ExternalContextFragment fragment1 = null;
-//	private static MapMarkerFragment fragment2 = null;
+	private static DefineTraceFragment fragment1 = null;
+	private static ViewTraceFragment fragment2 = null;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each of the
@@ -92,6 +93,8 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
                             .setText(mAppSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+        
+        TraceMap.initDict();
     }
 
     @Override
@@ -130,13 +133,18 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
         			fragment0.setArguments(arguments);
         			fragment0.setContext(activity);        			
         			//activity.getSupportFragmentManager().beginTransaction().remove(fragment).add(R.id.app_detail_container, fragment).commit();
-                    return fragment0;
+                    return fragment0;                	
                 case 1:
-                	return new ExternalContextFragment();
-                	
+                	if (fragment1 == null) {
+                		fragment1 = new DefineTraceFragment();
+                	}
+                	return fragment1;
                 case 2:
-                	return new MapMarkerFragment();
-                
+                	if (fragment2 == null) {
+                		fragment2 = new ViewTraceFragment();
+                		fragment2.setContext(activity);
+                	}
+                	return fragment2;
                 default:
                 	return null;
             }
@@ -153,10 +161,10 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
             	return "Rule Config";
             }
             else if (position == 1) {
-            	return "External Context";
+            	return "Define Trace";
             }
             else {
-            	return "Map";
+            	return "View Trace";
             }
         }
     }
@@ -172,7 +180,7 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_map, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_definetrace, container, false);
             return rootView;
         }
     }

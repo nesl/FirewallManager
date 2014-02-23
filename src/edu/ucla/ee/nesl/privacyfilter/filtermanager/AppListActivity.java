@@ -1,18 +1,11 @@
 package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-
-import com.google.android.gms.maps.model.LatLng;
 
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.AppId;
 
@@ -36,7 +29,7 @@ public class AppListActivity extends FragmentActivity implements
 
 	public static final boolean CLEAR_PREFS_ON_STARTUP = false;
 	public static final String PREFS_NAME = "prefs";
-	public static HashMap<String, LatLng> mapMarkers;
+	//public static HashMap<String, LatLng> mapMarkers;
 	public static Context context;
 
 	/**
@@ -112,60 +105,54 @@ public class AppListActivity extends FragmentActivity implements
 	}
 
 	public static void updateState() {
-		SharedPreferences settings = PreferenceManager
-				.getDefaultSharedPreferences(context);
-		SharedPreferences.Editor editor = settings.edit();
-		HashSet<String> places = new HashSet<String>();
-
-		for (Map.Entry<String, LatLng> entry : AppListActivity.mapMarkers
-				.entrySet()) {
-			places.add(entry.getKey());
-			editor.putFloat(entry.getKey() + "1",
-					(float) entry.getValue().latitude);
-			editor.putFloat(entry.getKey() + "2",
-					(float) entry.getValue().longitude);
-		}
-		editor.putStringSet("Places", places);
-		editor.commit();
+//		SharedPreferences settings = PreferenceManager
+//				.getDefaultSharedPreferences(context);
+//		SharedPreferences.Editor editor = settings.edit();
+//		HashSet<String> places = new HashSet<String>();
+//
+//		for (Map.Entry<String, LatLng> entry : AppListActivity.mapMarkers.entrySet()) {
+//			places.add(entry.getKey());
+//			editor.putFloat(entry.getKey() + "1",
+//					(float) entry.getValue().latitude);
+//			editor.putFloat(entry.getKey() + "2",
+//					(float) entry.getValue().longitude);
+//		}
+//		editor.putStringSet("Places", places);
+//		editor.commit();
 	}
 
 	public void onResume() {
 		super.onResume();
-		mapMarkers = new HashMap<String, LatLng>();
-		mapMarkers.put("Home", new LatLng(34.049351, -118.423852));
-		mapMarkers.put("Work", new LatLng(34.058351, -118.438852));
-
-		SharedPreferences settings = PreferenceManager
-				.getDefaultSharedPreferences(context);
-		HashSet<String> places = (HashSet<String>) settings.getStringSet(
-				"Places", null);
-		if (places != null) {
-			Log.i("tag", "Places is not null");
-			for (String str : places) {
-				LatLng ll = new LatLng(settings.getFloat(str + "1", 0),
-						settings.getFloat(str + "2", 0));
-				mapMarkers.put(str, ll);
-			}
-		}
+//		SharedPreferences settings = PreferenceManager
+//				.getDefaultSharedPreferences(context);
+//		HashSet<String> places = (HashSet<String>) settings.getStringSet("Places", null);
+//		if (places != null) {
+//			Log.i("tag", "Places is not null");
+//			for (String str : places) {
+//				LatLng ll = new LatLng(settings.getFloat(str + "1", 0),
+//						settings.getFloat(str + "2", 0));
+//				mapMarkers.put(str, ll);
+//			}
+//		}
 	}
 
 	@Override
 	public void onSaveInstanceState(Bundle savedInstanceState) {
 		super.onSaveInstanceState(savedInstanceState);
-		Bundle extras = new Bundle();
-		extras.putSerializable("HashMap", mapMarkers);
-
-		savedInstanceState.putBundle("HashMap", extras);
-		Log.i("act", "save state");
+		//TODO: save state in TraceMap
+//		Bundle extras = new Bundle();
+//		extras.putSerializable("HashMap", mapMarkers);
+//
+//		savedInstanceState.putBundle("HashMap", extras);
+//		Log.i("act", "save state");
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
-		Bundle extras = savedInstanceState.getBundle("HashMap");
-		mapMarkers = (HashMap<String, LatLng>) extras
-				.getSerializable("HashMap");
-		Log.i("act", "read state");
+//		Bundle extras = savedInstanceState.getBundle("HashMap");
+//		mapMarkers = (HashMap<String, LatLng>) extras
+//				.getSerializable("HashMap");
+//		Log.i("act", "read state");
 	}
 }

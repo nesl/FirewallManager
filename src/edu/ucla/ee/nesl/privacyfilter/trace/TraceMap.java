@@ -6,27 +6,40 @@ import java.util.List;
 
 import android.os.Environment;
 import android.util.Log;
+import android.util.SparseArray;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import edu.ucla.ee.nesl.privacyfilter.mc.service.MarkovChainService;
 import edu.ucla.ee.nesl.privacyfilter.mc.service.MarkovChainServiceImpl;
-import edu.ucla.ee.nesl.privacyfilter.mc.util.Utils;
 
 public class TraceMap {
 	private static HashMap<String, Integer[]> path = new HashMap<String, Integer[]>();
-	//private static HashMap<String, Integer[]> fakePath = new HashMap<String, Integer[]>();
 	private static final String SD_CARD_PATH = Environment.getExternalStorageDirectory().toString();
-	private static HashMap<String, Integer> locationMap;
+	public static HashMap<String, Integer> locationDict = new HashMap<String, Integer>();
+	public static SparseArray<String> reverseLocationDict = new SparseArray<String>();
+	private static SparseArray<LatLng> locationMap = new SparseArray<LatLng>();
 	
-	public static void addPlace(String str, int index) {
-		locationMap.put(str, index);
+	public static void addPlace(String str, LatLng loc) {
+		locationMap.put(locationDict.get(str), loc);
 	}
 	
-	public static void removePlace(String str) {
-		locationMap.remove(str);
+	public static boolean isPlaceExist(String str) {
+		return (locationMap.indexOfKey(locationDict.get(str)) >= 0);
+	}
+	
+	public static void addPlaceIndex(String str, int index) {
+		locationDict.put(str, index);
+		reverseLocationDict.put(index, str);
+	}
+	
+	public static void removePlaceIndex(String str) {
+		locationDict.remove(str);
 	}
 	
 	private static int getPlaceIndex(String str) {
-		if (locationMap.containsKey(str)) {
-			return locationMap.get(str);
+		if (locationDict.containsKey(str)) {
+			return locationDict.get(str);
 		}
 		else {
 			return -1;
@@ -34,23 +47,23 @@ public class TraceMap {
 		
 	}
 	
-	private static void initMap() {
-		locationMap = new HashMap<String, Integer>();
-		addPlace("Hospital", 0);
-		addPlace("Lab", 1);
-		addPlace("Starbucks", 2);
-		addPlace("Ralphs", 3);
-		addPlace("Home", 4);
-		addPlace("Classroom", 5);
-		addPlace("CVS", 6);
-		addPlace("Bombshelter", 7);
-		addPlace("Ackerman", 8);
-		addPlace("Seascafe", 9);
+	public static void initDict() {
+		locationDict = new HashMap<String, Integer>();
+		addPlaceIndex("Hospital", 0);
+		addPlaceIndex("Lab", 1);
+		addPlaceIndex("Starbucks", 2);
+		addPlaceIndex("Ralphs", 3);
+		addPlaceIndex("Home", 4);
+		addPlaceIndex("Classroom", 5);
+		addPlaceIndex("CVS", 6);
+		addPlaceIndex("Bombshelter", 7);
+		addPlaceIndex("Ackerman", 8);
+		addPlaceIndex("Seascafe", 9);
 	}
 	
 	public static void addPath(List<String> _path, String name) {
-		if(locationMap == null) {
-			initMap();
+		if(locationDict == null) {
+			initDict();
 		}
 		Integer[] index = new Integer[_path.size()];
 		int i = 0;
@@ -80,6 +93,8 @@ public class TraceMap {
         	str1 += alternativePath[i] + " -> ";
         }
         Log.i("TraceMap", str1);
+        
+        System.out.println("size of path=" + path.size());
 	}
 	
 	public static List<String> getNameList() {
@@ -90,7 +105,44 @@ public class TraceMap {
 		return list;
 	}
 	
-	public static Integer[] getPath(String name) {
-		return path.get(name); 
+	public static Integer[] getIntPath(String name) {
+		if (path.containsKey(name)) {
+			return path.get(name); 
+		}
+		else {
+			return null;
+		}
+	}
+	
+	public static List<LatLng> getLocPath(String name) {
+		if (path.containsKey(name)) {
+			ArrayList<LatLng> res = new ArrayList<LatLng>();
+			Integer[] intPath = path.get(name);
+			for (int i = 0; i < intPath.length; i++) {
+				res.add(locationMap.get(intPath[i]));
+			}
+			return res; 
+		}
+		else {
+			return null;
+		}
+	}
+	
+	public static List<String> getStringPath(String name) {
+		if (path.containsKey(name)) {
+			ArrayList<String> res = new ArrayList<String>();
+			Integer[] intPath = path.get(name);
+			for (int i = 0; i < intPath.length; i++) {
+				res.add(reverseLocationDict.get(intPath[i]));
+			}
+			return res; 
+		}
+		else {
+			return null;
+		}
+	}
+	
+	public static LatLng getLoc(String name) {
+		return locationMap.get(locationDict.get(name));
 	}
 }

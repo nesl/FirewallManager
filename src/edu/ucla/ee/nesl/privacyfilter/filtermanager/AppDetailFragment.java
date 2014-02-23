@@ -5,7 +5,6 @@ package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -251,9 +250,9 @@ public class AppDetailFragment extends Fragment {
 							break;
 						case 3: // playback
 							playbackView.setVisibility(View.VISIBLE);
-							timingView.setVisibility(View.VISIBLE);
+							//timingView.setVisibility(View.VISIBLE);
 							locationView.setVisibility(View.VISIBLE);
-							externalView.setVisibility(View.VISIBLE);
+							//externalView.setVisibility(View.VISIBLE);
 							break;
 						case 4: // perturb
 							perturbView.setVisibility(View.VISIBLE);
@@ -279,8 +278,8 @@ public class AppDetailFragment extends Fragment {
 			
 			List<String> listloc = new ArrayList<String>();
 			listloc.add("None");
-			for (Map.Entry<String, LatLng> entry : AppListActivity.mapMarkers.entrySet()) {
-				listloc.add(entry.getKey());
+			for (String name : TraceMap.locationDict.keySet()) {
+				listloc.add(name);
 			}
 			
 			if (context != null) {
@@ -297,8 +296,8 @@ public class AppDetailFragment extends Fragment {
 			constantLocationSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_constant_location_spinner);
 			
 			List<String> listloc = new ArrayList<String>();
-			for (Map.Entry<String, LatLng> entry : AppListActivity.mapMarkers.entrySet()) {
-				listloc.add(entry.getKey());
+			for (String name : TraceMap.locationDict.keySet()) {
+				listloc.add(name);
 			}
 			
 			if (context != null) {				
@@ -447,7 +446,7 @@ public class AppDetailFragment extends Fragment {
 			
 			if (sensorType.getAndroidId() == SensorType.GPS_ID) {
 				String label = constantLocationSpinner.getSelectedItem().toString();
-				LatLng ll = AppListActivity.mapMarkers.get(label);
+				LatLng ll = TraceMap.getLoc(label);
 				svBuilder.setVecVal(FirewallConfigMessages.VectorValue.newBuilder().setLat(ll.latitude).setLon(ll.longitude).build());
 			}
 			else {
