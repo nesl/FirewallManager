@@ -251,7 +251,7 @@ public class AppDetailFragment extends Fragment {
 						case 3: // playback
 							playbackView.setVisibility(View.VISIBLE);
 							//timingView.setVisibility(View.VISIBLE);
-							locationView.setVisibility(View.VISIBLE);
+							//locationView.setVisibility(View.VISIBLE);
 							//externalView.setVisibility(View.VISIBLE);
 							break;
 						case 4: // perturb
@@ -423,8 +423,8 @@ public class AppDetailFragment extends Fragment {
 			// }}}
 			
 			playbackView = (ViewGroup) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_playback);
-			playbackSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_playback_spinner);
-			setUpPlaybackSpinner();
+			//playbackSpinner = (Spinner) ruleView.findViewById(R.id.fragment_app_detail_sensor_action_arguments_playback_spinner);
+			//setUpPlaybackSpinner();
 
 			setupActionSpinner();
 			setupPerturbSpinner();

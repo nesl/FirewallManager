@@ -33,8 +33,9 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
 	
 	private static AppDetailActivityWithMap activity;
 	private static AppDetailFragment fragment0 = null;
-	private static DefineTraceFragment fragment1 = null;
+	private static AnnotateFragment fragment1 = null;
 	private static ViewTraceFragment fragment2 = null;
+	private static LocListFragment fragment3 = null;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each of the
@@ -124,27 +125,39 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
         @Override
         public Fragment getItem(int i) {
             switch (i) {
+                	
                 case 0:
-                    // The first section of the app is the most interesting -- it offers
-                    // a launchpad into the other demonstrations in this example application
+                	if (fragment1 == null) {
+                		fragment1 = new AnnotateFragment();
+//                		fragment1.setContext(activity);
+                	}
+                	//fragment1 = new AnnotateFragment();
+                	//activity.getSupportFragmentManager().beginTransaction().remove(fragment1).add(R.id.app_detail_container, fragment1).commit();
+                	return fragment1;
+                case 1:
+                	if (fragment3 == null) {
+                		fragment3 = new LocListFragment();
+                		fragment3.setContext(activity);
+                	}
+//                	activity.getSupportFragmentManager().beginTransaction().remove(fragment3).add(R.id.app_detail_container, fragment3).commit();
+                	return fragment3;
+                case 2:
             		Bundle arguments = new Bundle();
         			arguments.putString(AppDetailFragment.ARG_APP_STR, activity.getIntent().getStringExtra(AppDetailFragment.ARG_APP_STR));
         			fragment0 = new AppDetailFragment();
         			fragment0.setArguments(arguments);
         			fragment0.setContext(activity);        			
-        			//activity.getSupportFragmentManager().beginTransaction().remove(fragment).add(R.id.app_detail_container, fragment).commit();
-                    return fragment0;                	
-                case 1:
-                	if (fragment1 == null) {
-                		fragment1 = new DefineTraceFragment();
-                	}
-                	return fragment1;
-                case 2:
+//        			activity.getSupportFragmentManager().beginTransaction().remove(fragment0).add(R.id.app_detail_container, fragment0).commit();
+                    return fragment0;   
+                case 3:
                 	if (fragment2 == null) {
                 		fragment2 = new ViewTraceFragment();
                 		fragment2.setContext(activity);
                 	}
+//                	fragment2 = new ViewTraceFragment();
+//                	activity.getSupportFragmentManager().beginTransaction().remove(fragment2).add(R.id.app_detail_container, fragment2).commit();
                 	return fragment2;
+                	
                 default:
                 	return null;
             }
@@ -152,16 +165,19 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             if (position == 0) {
-            	return "Rule Config";
+            	return "Annotate Trace";
             }
             else if (position == 1) {
-            	return "Define Trace";
+            	return "Define Sensitive Place";
+            }
+            else if (position == 2) {
+            	return "Playback Config";
             }
             else {
             	return "View Trace";
@@ -180,7 +196,7 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_definetrace, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_annotate, container, false);
             return rootView;
         }
     }

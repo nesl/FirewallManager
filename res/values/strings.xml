@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Firewall Manager</string>
-    <string name="title_app_detail">Rule Config</string>
-    <string name="title_app_detail_tab">Rule Config</string>
+    <string name="app_name">iDeceit Manager</string>
+    <string name="title_app_detail">iDeceit Config</string>
+    <string name="title_app_detail_tab">iDeceit Config</string>
 
 		<string name="std_line_height">40sp</string>
 
@@ -45,4 +45,33 @@
 		<string name="percentage">\tPriority:</string>
 		<string name="map_clear">Clear</string>
 		<string name="map_save">Save</string>
+		<string-array name="list_trace">
+		    <item >None</item>
+			<item >2014-01-01-trace1</item>
+			<item >2014-01-02-trace1</item>
+			<item >2014-01-02-trace2</item>
+			<item >2014-02-01-trace1</item>
+			<item >2014-02-01-trace2</item>
+			<item >2014-01-01-trace1-fake</item>
+			<item >2014-01-02-trace1-fake</item>
+			<item >2014-01-02-trace2-fake</item>
+			<item >2014-02-01-trace1-fake</item>
+			<item >2014-02-01-trace2-fake</item>
+		</string-array>
+		<string-array name="sensitive">
+		    <item >Non-sensitive</item>
+			<item >Sensitive</item>
+		</string-array>
+		<string-array name="list_mc">
+		    <item >None</item>
+		    <item >Trained MC from trace</item>
+			<item >Super MC</item>
+			<item >Choose MC from file...</item>
+		</string-array>
+		
+		<string-array name="list_playback_mode">
+		    <item >Default</item>
+			<item >Synthesized Data</item>
+			<item >Replay fake trace</item>
+		</string-array>
 </resources>

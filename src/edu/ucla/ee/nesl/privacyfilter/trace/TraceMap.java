@@ -10,6 +10,7 @@ import android.util.SparseArray;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.Place;
 import edu.ucla.ee.nesl.privacyfilter.mc.service.MarkovChainService;
 import edu.ucla.ee.nesl.privacyfilter.mc.service.MarkovChainServiceImpl;
 
@@ -144,5 +145,14 @@ public class TraceMap {
 	
 	public static LatLng getLoc(String name) {
 		return locationMap.get(locationDict.get(name));
+	}
+	
+	public static List<Place> getPlaces() {
+		ArrayList<Place> res = new ArrayList<Place>();
+		for (String str:locationDict.keySet()) {
+			Place plc = new Place(str, getLoc(str));
+			res.add(plc);
+		}
+		return res;
 	}
 }

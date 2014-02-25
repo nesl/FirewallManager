@@ -52,7 +52,8 @@
 			        android:id="@+id/view_trace_spinner"
 			        android:layout_width="wrap_content"
 			        android:paddingLeft="2dp"
-			        android:layout_height="wrap_content" />	
+			        android:layout_height="wrap_content" 
+			        android:entries="@array/list_trace" />	
 			    
 			    <RelativeLayout
 				    android:orientation="horizontal"

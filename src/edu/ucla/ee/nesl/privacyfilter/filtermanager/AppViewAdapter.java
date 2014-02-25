@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.AppFilterData;
 import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.AppId;
+import edu.ucla.ee.nesl.privacyfilter.filtermanager.models.SensorType;
 
 public class AppViewAdapter extends ArrayAdapter<AppFilterData> {
 
@@ -41,24 +42,32 @@ public class AppViewAdapter extends ArrayAdapter<AppFilterData> {
 
 		String usageMessage = "";
 
-		int numSensorsUsed = app.getSensorsUsed().size();
+		List<SensorType> sensorList = app.getSensorsUsed();
+		int numSensorsUsed = sensorList.size();
 		String sensorPlural = "s";
 		if (numSensorsUsed == 1) {
 			sensorPlural = "";
 		}
-
-		int numInferences = app.getInferences().size();
-		String inferencePlural = "s";
-		if (numInferences == 1) {
-			inferencePlural = "";
-		}
-
-		if (numInferences > 0) {
-			usageMessage += Integer.toString(numInferences) + " inference" + inferencePlural + " via ";
-		}
+		
 		if (numSensorsUsed > 0) {
-			usageMessage += Integer.toString(numSensorsUsed) + " sensor" + sensorPlural;
+			usageMessage += "Uses " + Integer.toString(numSensorsUsed) + " sensor" + sensorPlural + ": ";
 		}
+		
+		for (SensorType sensor:sensorList) {
+			usageMessage += sensor.getName() + " ";
+		}
+		
+		usageMessage += ".";
+
+//		int numInferences = app.getInferences().size();
+//		String inferencePlural = "s";
+//		if (numInferences == 1) {
+//			inferencePlural = "";
+//		}
+//		if (numInferences > 0) {
+//			usageMessage += Integer.toString(numInferences) + " inference" + inferencePlural + " via ";
+//		}
+		
 		((TextView) view.findViewById(R.id.app_list_entry_subtitle)).setText(usageMessage);
 		//((TextView) view.findViewById(R.id.app_list_entry_status)).setText("BASE");
 

@@ -53,7 +53,7 @@ public class ViewTraceFragment extends Fragment {
 		mMarker = new ArrayList<Marker>();
 		mLine = new ArrayList<Polyline>();
 		traceSpinner = (Spinner) rootView.findViewById(R.id.view_trace_spinner);
-		setupSpinner();
+		//setupSpinner();
 		map = ((SupportMapFragment)this.getActivity().getSupportFragmentManager().findFragmentById(R.id.map1)).getMap();
 		setButtonListener();
 		focusOnMarker();
@@ -62,7 +62,7 @@ public class ViewTraceFragment extends Fragment {
 	
 	public void onResume() {
 		super.onResume();
-		setupSpinner();
+		//setupSpinner();
 	}
 	
 	private void setupSpinner() {
@@ -90,12 +90,24 @@ public class ViewTraceFragment extends Fragment {
 			public void onClick(View v) {
 				synchronized (mMarker) {
 					if (traceSpinner.getSelectedItemPosition() >= 0) {
-						String pathName = (String) traceSpinner.getSelectedItem();
-						List<LatLng> selectedPath = TraceMap.getLocPath(pathName);
-						List<String> pathLabel = TraceMap.getStringPath(pathName);
-						for (int i = 0; i < selectedPath.size(); i++) {
-							LatLng newll = selectedPath.get(i);
-							mMarker.add(map.addMarker(new MarkerOptions().position(newll).draggable(true).visible(true).title(pathLabel.get(i))));
+						
+						ArrayList<LatLng> mTrace = new ArrayList<LatLng>();
+						//ArrayList<String> mLabel = new ArrayList<String>();
+						
+						mTrace.add(new LatLng(34.228126, -118.562307));
+						mTrace.add(new LatLng(34.22039, -118.562307));
+						mTrace.add(new LatLng(34.220532, -118.553638));
+						mTrace.add(new LatLng(34.221455, -118.506088));
+						mTrace.add(new LatLng(34.221313, -118.473473));
+						mTrace.add(new LatLng(34.257358, -118.472271));
+						mTrace.add(new LatLng(34.257216, -118.456221));
+						
+						//String pathName = (String) traceSpinner.getSelectedItem();
+						//List<LatLng> selectedPath = TraceMap.getLocPath(pathName);
+						//List<String> pathLabel = TraceMap.getStringPath(pathName);
+						for (int i = 0; i < mTrace.size(); i++) {
+							LatLng newll = mTrace.get(i);
+							mMarker.add(map.addMarker(new MarkerOptions().position(newll).draggable(true).visible(true)));
 							if (i > 0) {
 								Polyline line = map.addPolyline(new PolylineOptions()
 							     .add(mMarker.get(i- 1).getPosition(), mMarker.get(i).getPosition())
@@ -103,7 +115,6 @@ public class ViewTraceFragment extends Fragment {
 							     .color(Color.BLUE));
 								 mLine.add(line);
 							}
-
 						}
 					}
 				}
@@ -121,7 +132,7 @@ public class ViewTraceFragment extends Fragment {
 					mMarker.clear();
 					mLine.clear();
 					focusOnMarker();
-					setupSpinner();
+					//setupSpinner();
 				}
 			}
 			

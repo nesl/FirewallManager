@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:paddingTop="4dp"
+	android:paddingBottom="4dp"
+>
+	<TextView
+		android:id="@+id/loc_list_entry_title"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:paddingLeft="10dp"
+		android:textSize="24sp"
+		android:paddingBottom="4dp"
+		android:paddingTop="4dp"
+		android:textColor="#0000ff"
+	/>
+	
+	<TextView
+		android:id="@+id/loc_list_entry_loc"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:paddingTop="10dp"
+		android:paddingLeft="20dp"
+		android:textSize="16sp"
+		android:textColor="#ff0000"
+	/>
+
+	<TextView
+		android:id="@+id/loc_list_entry_subtitle"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:paddingTop="10dp"
+		android:paddingLeft="20dp"
+		android:textSize="16sp"
+	/>
+
+</LinearLayout>
