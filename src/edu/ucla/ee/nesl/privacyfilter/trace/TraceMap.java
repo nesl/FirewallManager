@@ -57,8 +57,8 @@ public class TraceMap {
 		addPlaceIndex("Home", 4);
 		addPlaceIndex("Classroom", 5);
 		addPlaceIndex("CVS", 6);
-		addPlaceIndex("Bombshelter", 7);
-		addPlaceIndex("Ackerman", 8);
+		addPlaceIndex("Nordstrom", 7);
+		addPlaceIndex("Macys", 8);
 		addPlaceIndex("Seascafe", 9);
 	}
 	
