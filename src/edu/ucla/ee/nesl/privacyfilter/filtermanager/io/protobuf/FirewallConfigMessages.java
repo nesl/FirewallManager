@@ -63,7 +63,7 @@ public final class FirewallConfigMessages {
         this.value = value;
       }
       
-      // @@protoc_insertion_point(enum_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Perturb.DistributionType)
+      // @@protoc_insertion_point(enum_scope:Perturb.DistributionType)
     }
     
     // optional float mean = 1;
@@ -101,15 +101,15 @@ public final class FirewallConfigMessages {
     public boolean hasExpParam() { return hasExpParam; }
     public float getExpParam() { return expParam_; }
     
-    // required .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Perturb.DistributionType distType = 6;
+    // required .Perturb.DistributionType distType = 6;
     public static final int DISTTYPE_FIELD_NUMBER = 6;
     private boolean hasDistType;
-    private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.DistributionType distType_;
+    private FirewallConfigMessages.Perturb.DistributionType distType_;
     public boolean hasDistType() { return hasDistType; }
-    public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.DistributionType getDistType() { return distType_; }
+    public FirewallConfigMessages.Perturb.DistributionType getDistType() { return distType_; }
     
     private void initFields() {
-      distType_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.DistributionType.GAUSSIAN;
+      distType_ = FirewallConfigMessages.Perturb.DistributionType.GAUSSIAN;
     }
     public final boolean isInitialized() {
       if (!hasDistType) return false;
@@ -173,41 +173,41 @@ public final class FirewallConfigMessages {
       return size;
     }
     
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb parseFrom(
+    public static FirewallConfigMessages.Perturb parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb parseFrom(
+    public static FirewallConfigMessages.Perturb parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb parseFrom(byte[] data)
+    public static FirewallConfigMessages.Perturb parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb parseFrom(
+    public static FirewallConfigMessages.Perturb parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb parseFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.Perturb parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb parseFrom(
+    public static FirewallConfigMessages.Perturb parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb parseDelimitedFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.Perturb parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -216,7 +216,7 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb parseDelimitedFrom(
+    public static FirewallConfigMessages.Perturb parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -227,12 +227,12 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb parseFrom(
+    public static FirewallConfigMessages.Perturb parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb parseFrom(
+    public static FirewallConfigMessages.Perturb parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -242,26 +242,26 @@ public final class FirewallConfigMessages {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb prototype) {
+    public static Builder newBuilder(FirewallConfigMessages.Perturb prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
     
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb, Builder> {
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb result;
+          FirewallConfigMessages.Perturb, Builder> {
+      private FirewallConfigMessages.Perturb result;
       
-      // Construct using edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.newBuilder()
+      // Construct using FirewallConfigMessages.Perturb.newBuilder()
       private Builder() {}
       
       private static Builder create() {
         Builder builder = new Builder();
-        builder.result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb();
+        builder.result = new FirewallConfigMessages.Perturb();
         return builder;
       }
       
-      protected edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb internalGetResult() {
+      protected FirewallConfigMessages.Perturb internalGetResult() {
         return result;
       }
       
@@ -270,7 +270,7 @@ public final class FirewallConfigMessages {
           throw new IllegalStateException(
             "Cannot call clear() after build().");
         }
-        result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb();
+        result = new FirewallConfigMessages.Perturb();
         return this;
       }
       
@@ -278,21 +278,21 @@ public final class FirewallConfigMessages {
         return create().mergeFrom(result);
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb getDefaultInstanceForType() {
-        return edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.getDefaultInstance();
+      public FirewallConfigMessages.Perturb getDefaultInstanceForType() {
+        return FirewallConfigMessages.Perturb.getDefaultInstance();
       }
       
       public boolean isInitialized() {
         return result.isInitialized();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb build() {
+      public FirewallConfigMessages.Perturb build() {
         if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return buildPartial();
       }
       
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb buildParsed()
+      private FirewallConfigMessages.Perturb buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
           throw newUninitializedMessageException(
@@ -301,18 +301,18 @@ public final class FirewallConfigMessages {
         return buildPartial();
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb buildPartial() {
+      public FirewallConfigMessages.Perturb buildPartial() {
         if (result == null) {
           throw new IllegalStateException(
             "build() has already been called on this Builder.");
         }
-        edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb returnMe = result;
+        FirewallConfigMessages.Perturb returnMe = result;
         result = null;
         return returnMe;
       }
       
-      public Builder mergeFrom(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb other) {
-        if (other == edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.getDefaultInstance()) return this;
+      public Builder mergeFrom(FirewallConfigMessages.Perturb other) {
+        if (other == FirewallConfigMessages.Perturb.getDefaultInstance()) return this;
         if (other.hasMean()) {
           setMean(other.getMean());
         }
@@ -371,7 +371,7 @@ public final class FirewallConfigMessages {
             }
             case 48: {
               int rawValue = input.readEnum();
-              edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.DistributionType value = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.DistributionType.valueOf(rawValue);
+              FirewallConfigMessages.Perturb.DistributionType value = FirewallConfigMessages.Perturb.DistributionType.valueOf(rawValue);
               if (value != null) {
                 setDistType(value);
               }
@@ -472,14 +472,14 @@ public final class FirewallConfigMessages {
         return this;
       }
       
-      // required .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Perturb.DistributionType distType = 6;
+      // required .Perturb.DistributionType distType = 6;
       public boolean hasDistType() {
         return result.hasDistType();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.DistributionType getDistType() {
+      public FirewallConfigMessages.Perturb.DistributionType getDistType() {
         return result.getDistType();
       }
-      public Builder setDistType(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.DistributionType value) {
+      public Builder setDistType(FirewallConfigMessages.Perturb.DistributionType value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -489,20 +489,20 @@ public final class FirewallConfigMessages {
       }
       public Builder clearDistType() {
         result.hasDistType = false;
-        result.distType_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.DistributionType.GAUSSIAN;
+        result.distType_ = FirewallConfigMessages.Perturb.DistributionType.GAUSSIAN;
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Perturb)
+      // @@protoc_insertion_point(builder_scope:Perturb)
     }
     
     static {
       defaultInstance = new Perturb(true);
-      edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.internalForceInit();
+      FirewallConfigMessages.internalForceInit();
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Perturb)
+    // @@protoc_insertion_point(class_scope:Perturb)
   }
   
   public static final class VectorValue extends
@@ -669,41 +669,41 @@ public final class FirewallConfigMessages {
       return size;
     }
     
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue parseFrom(
+    public static FirewallConfigMessages.VectorValue parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue parseFrom(
+    public static FirewallConfigMessages.VectorValue parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue parseFrom(byte[] data)
+    public static FirewallConfigMessages.VectorValue parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue parseFrom(
+    public static FirewallConfigMessages.VectorValue parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue parseFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.VectorValue parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue parseFrom(
+    public static FirewallConfigMessages.VectorValue parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue parseDelimitedFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.VectorValue parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -712,7 +712,7 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue parseDelimitedFrom(
+    public static FirewallConfigMessages.VectorValue parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -723,12 +723,12 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue parseFrom(
+    public static FirewallConfigMessages.VectorValue parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue parseFrom(
+    public static FirewallConfigMessages.VectorValue parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -738,26 +738,26 @@ public final class FirewallConfigMessages {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue prototype) {
+    public static Builder newBuilder(FirewallConfigMessages.VectorValue prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
     
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue, Builder> {
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue result;
+          FirewallConfigMessages.VectorValue, Builder> {
+      private FirewallConfigMessages.VectorValue result;
       
-      // Construct using edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue.newBuilder()
+      // Construct using FirewallConfigMessages.VectorValue.newBuilder()
       private Builder() {}
       
       private static Builder create() {
         Builder builder = new Builder();
-        builder.result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue();
+        builder.result = new FirewallConfigMessages.VectorValue();
         return builder;
       }
       
-      protected edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue internalGetResult() {
+      protected FirewallConfigMessages.VectorValue internalGetResult() {
         return result;
       }
       
@@ -766,7 +766,7 @@ public final class FirewallConfigMessages {
           throw new IllegalStateException(
             "Cannot call clear() after build().");
         }
-        result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue();
+        result = new FirewallConfigMessages.VectorValue();
         return this;
       }
       
@@ -774,21 +774,21 @@ public final class FirewallConfigMessages {
         return create().mergeFrom(result);
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue getDefaultInstanceForType() {
-        return edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue.getDefaultInstance();
+      public FirewallConfigMessages.VectorValue getDefaultInstanceForType() {
+        return FirewallConfigMessages.VectorValue.getDefaultInstance();
       }
       
       public boolean isInitialized() {
         return result.isInitialized();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue build() {
+      public FirewallConfigMessages.VectorValue build() {
         if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return buildPartial();
       }
       
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue buildParsed()
+      private FirewallConfigMessages.VectorValue buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
           throw newUninitializedMessageException(
@@ -797,18 +797,18 @@ public final class FirewallConfigMessages {
         return buildPartial();
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue buildPartial() {
+      public FirewallConfigMessages.VectorValue buildPartial() {
         if (result == null) {
           throw new IllegalStateException(
             "build() has already been called on this Builder.");
         }
-        edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue returnMe = result;
+        FirewallConfigMessages.VectorValue returnMe = result;
         result = null;
         return returnMe;
       }
       
-      public Builder mergeFrom(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue other) {
-        if (other == edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue.getDefaultInstance()) return this;
+      public Builder mergeFrom(FirewallConfigMessages.VectorValue other) {
+        if (other == FirewallConfigMessages.VectorValue.getDefaultInstance()) return this;
         if (other.hasX()) {
           setX(other.getX());
         }
@@ -1057,16 +1057,16 @@ public final class FirewallConfigMessages {
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.VectorValue)
+      // @@protoc_insertion_point(builder_scope:VectorValue)
     }
     
     static {
       defaultInstance = new VectorValue(true);
-      edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.internalForceInit();
+      FirewallConfigMessages.internalForceInit();
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.VectorValue)
+    // @@protoc_insertion_point(class_scope:VectorValue)
   }
   
   public static final class SensorValue extends
@@ -1093,12 +1093,12 @@ public final class FirewallConfigMessages {
     public boolean hasScalarVal() { return hasScalarVal; }
     public float getScalarVal() { return scalarVal_; }
     
-    // optional .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.VectorValue vecVal = 2;
+    // optional .VectorValue vecVal = 2;
     public static final int VECVAL_FIELD_NUMBER = 2;
     private boolean hasVecVal;
-    private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue vecVal_;
+    private FirewallConfigMessages.VectorValue vecVal_;
     public boolean hasVecVal() { return hasVecVal; }
-    public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue getVecVal() { return vecVal_; }
+    public FirewallConfigMessages.VectorValue getVecVal() { return vecVal_; }
     
     // optional int64 timestamp = 3;
     public static final int TIMESTAMP_FIELD_NUMBER = 3;
@@ -1115,7 +1115,7 @@ public final class FirewallConfigMessages {
     public float getDefaultVal() { return defaultVal_; }
     
     private void initFields() {
-      vecVal_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue.getDefaultInstance();
+      vecVal_ = FirewallConfigMessages.VectorValue.getDefaultInstance();
     }
     public final boolean isInitialized() {
       return true;
@@ -1164,41 +1164,41 @@ public final class FirewallConfigMessages {
       return size;
     }
     
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue parseFrom(
+    public static FirewallConfigMessages.SensorValue parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue parseFrom(
+    public static FirewallConfigMessages.SensorValue parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue parseFrom(byte[] data)
+    public static FirewallConfigMessages.SensorValue parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue parseFrom(
+    public static FirewallConfigMessages.SensorValue parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue parseFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.SensorValue parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue parseFrom(
+    public static FirewallConfigMessages.SensorValue parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue parseDelimitedFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.SensorValue parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -1207,7 +1207,7 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue parseDelimitedFrom(
+    public static FirewallConfigMessages.SensorValue parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1218,12 +1218,12 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue parseFrom(
+    public static FirewallConfigMessages.SensorValue parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue parseFrom(
+    public static FirewallConfigMessages.SensorValue parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1233,26 +1233,26 @@ public final class FirewallConfigMessages {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue prototype) {
+    public static Builder newBuilder(FirewallConfigMessages.SensorValue prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
     
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue, Builder> {
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue result;
+          FirewallConfigMessages.SensorValue, Builder> {
+      private FirewallConfigMessages.SensorValue result;
       
-      // Construct using edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue.newBuilder()
+      // Construct using FirewallConfigMessages.SensorValue.newBuilder()
       private Builder() {}
       
       private static Builder create() {
         Builder builder = new Builder();
-        builder.result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue();
+        builder.result = new FirewallConfigMessages.SensorValue();
         return builder;
       }
       
-      protected edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue internalGetResult() {
+      protected FirewallConfigMessages.SensorValue internalGetResult() {
         return result;
       }
       
@@ -1261,7 +1261,7 @@ public final class FirewallConfigMessages {
           throw new IllegalStateException(
             "Cannot call clear() after build().");
         }
-        result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue();
+        result = new FirewallConfigMessages.SensorValue();
         return this;
       }
       
@@ -1269,21 +1269,21 @@ public final class FirewallConfigMessages {
         return create().mergeFrom(result);
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue getDefaultInstanceForType() {
-        return edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue.getDefaultInstance();
+      public FirewallConfigMessages.SensorValue getDefaultInstanceForType() {
+        return FirewallConfigMessages.SensorValue.getDefaultInstance();
       }
       
       public boolean isInitialized() {
         return result.isInitialized();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue build() {
+      public FirewallConfigMessages.SensorValue build() {
         if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return buildPartial();
       }
       
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue buildParsed()
+      private FirewallConfigMessages.SensorValue buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
           throw newUninitializedMessageException(
@@ -1292,18 +1292,18 @@ public final class FirewallConfigMessages {
         return buildPartial();
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue buildPartial() {
+      public FirewallConfigMessages.SensorValue buildPartial() {
         if (result == null) {
           throw new IllegalStateException(
             "build() has already been called on this Builder.");
         }
-        edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue returnMe = result;
+        FirewallConfigMessages.SensorValue returnMe = result;
         result = null;
         return returnMe;
       }
       
-      public Builder mergeFrom(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue other) {
-        if (other == edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue.getDefaultInstance()) return this;
+      public Builder mergeFrom(FirewallConfigMessages.SensorValue other) {
+        if (other == FirewallConfigMessages.SensorValue.getDefaultInstance()) return this;
         if (other.hasScalarVal()) {
           setScalarVal(other.getScalarVal());
         }
@@ -1339,7 +1339,7 @@ public final class FirewallConfigMessages {
               break;
             }
             case 18: {
-              edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue.Builder subBuilder = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue.newBuilder();
+              FirewallConfigMessages.VectorValue.Builder subBuilder = FirewallConfigMessages.VectorValue.newBuilder();
               if (hasVecVal()) {
                 subBuilder.mergeFrom(getVecVal());
               }
@@ -1378,14 +1378,14 @@ public final class FirewallConfigMessages {
         return this;
       }
       
-      // optional .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.VectorValue vecVal = 2;
+      // optional .VectorValue vecVal = 2;
       public boolean hasVecVal() {
         return result.hasVecVal();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue getVecVal() {
+      public FirewallConfigMessages.VectorValue getVecVal() {
         return result.getVecVal();
       }
-      public Builder setVecVal(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue value) {
+      public Builder setVecVal(FirewallConfigMessages.VectorValue value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1393,16 +1393,16 @@ public final class FirewallConfigMessages {
         result.vecVal_ = value;
         return this;
       }
-      public Builder setVecVal(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue.Builder builderForValue) {
+      public Builder setVecVal(FirewallConfigMessages.VectorValue.Builder builderForValue) {
         result.hasVecVal = true;
         result.vecVal_ = builderForValue.build();
         return this;
       }
-      public Builder mergeVecVal(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue value) {
+      public Builder mergeVecVal(FirewallConfigMessages.VectorValue value) {
         if (result.hasVecVal() &&
-            result.vecVal_ != edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue.getDefaultInstance()) {
+            result.vecVal_ != FirewallConfigMessages.VectorValue.getDefaultInstance()) {
           result.vecVal_ =
-            edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue.newBuilder(result.vecVal_).mergeFrom(value).buildPartial();
+            FirewallConfigMessages.VectorValue.newBuilder(result.vecVal_).mergeFrom(value).buildPartial();
         } else {
           result.vecVal_ = value;
         }
@@ -1411,7 +1411,7 @@ public final class FirewallConfigMessages {
       }
       public Builder clearVecVal() {
         result.hasVecVal = false;
-        result.vecVal_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.VectorValue.getDefaultInstance();
+        result.vecVal_ = FirewallConfigMessages.VectorValue.getDefaultInstance();
         return this;
       }
       
@@ -1451,16 +1451,16 @@ public final class FirewallConfigMessages {
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.SensorValue)
+      // @@protoc_insertion_point(builder_scope:SensorValue)
     }
     
     static {
       defaultInstance = new SensorValue(true);
-      edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.internalForceInit();
+      FirewallConfigMessages.internalForceInit();
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.SensorValue)
+    // @@protoc_insertion_point(class_scope:SensorValue)
   }
   
   public static final class Param extends
@@ -1480,12 +1480,12 @@ public final class FirewallConfigMessages {
       return defaultInstance;
     }
     
-    // optional .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.SensorValue constantValue = 1;
+    // optional .SensorValue constantValue = 1;
     public static final int CONSTANTVALUE_FIELD_NUMBER = 1;
     private boolean hasConstantValue;
-    private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue constantValue_;
+    private FirewallConfigMessages.SensorValue constantValue_;
     public boolean hasConstantValue() { return hasConstantValue; }
-    public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue getConstantValue() { return constantValue_; }
+    public FirewallConfigMessages.SensorValue getConstantValue() { return constantValue_; }
     
     // optional float delay = 2;
     public static final int DELAY_FIELD_NUMBER = 2;
@@ -1494,16 +1494,16 @@ public final class FirewallConfigMessages {
     public boolean hasDelay() { return hasDelay; }
     public float getDelay() { return delay_; }
     
-    // optional .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Perturb perturb = 3;
+    // optional .Perturb perturb = 3;
     public static final int PERTURB_FIELD_NUMBER = 3;
     private boolean hasPerturb;
-    private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb perturb_;
+    private FirewallConfigMessages.Perturb perturb_;
     public boolean hasPerturb() { return hasPerturb; }
-    public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb getPerturb() { return perturb_; }
+    public FirewallConfigMessages.Perturb getPerturb() { return perturb_; }
     
     private void initFields() {
-      constantValue_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue.getDefaultInstance();
-      perturb_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.getDefaultInstance();
+      constantValue_ = FirewallConfigMessages.SensorValue.getDefaultInstance();
+      perturb_ = FirewallConfigMessages.Perturb.getDefaultInstance();
     }
     public final boolean isInitialized() {
       if (hasPerturb()) {
@@ -1548,41 +1548,41 @@ public final class FirewallConfigMessages {
       return size;
     }
     
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param parseFrom(
+    public static FirewallConfigMessages.Param parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param parseFrom(
+    public static FirewallConfigMessages.Param parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param parseFrom(byte[] data)
+    public static FirewallConfigMessages.Param parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param parseFrom(
+    public static FirewallConfigMessages.Param parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param parseFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.Param parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param parseFrom(
+    public static FirewallConfigMessages.Param parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param parseDelimitedFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.Param parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -1591,7 +1591,7 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param parseDelimitedFrom(
+    public static FirewallConfigMessages.Param parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1602,12 +1602,12 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param parseFrom(
+    public static FirewallConfigMessages.Param parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param parseFrom(
+    public static FirewallConfigMessages.Param parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1617,26 +1617,26 @@ public final class FirewallConfigMessages {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param prototype) {
+    public static Builder newBuilder(FirewallConfigMessages.Param prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
     
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param, Builder> {
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param result;
+          FirewallConfigMessages.Param, Builder> {
+      private FirewallConfigMessages.Param result;
       
-      // Construct using edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param.newBuilder()
+      // Construct using FirewallConfigMessages.Param.newBuilder()
       private Builder() {}
       
       private static Builder create() {
         Builder builder = new Builder();
-        builder.result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param();
+        builder.result = new FirewallConfigMessages.Param();
         return builder;
       }
       
-      protected edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param internalGetResult() {
+      protected FirewallConfigMessages.Param internalGetResult() {
         return result;
       }
       
@@ -1645,7 +1645,7 @@ public final class FirewallConfigMessages {
           throw new IllegalStateException(
             "Cannot call clear() after build().");
         }
-        result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param();
+        result = new FirewallConfigMessages.Param();
         return this;
       }
       
@@ -1653,21 +1653,21 @@ public final class FirewallConfigMessages {
         return create().mergeFrom(result);
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param getDefaultInstanceForType() {
-        return edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param.getDefaultInstance();
+      public FirewallConfigMessages.Param getDefaultInstanceForType() {
+        return FirewallConfigMessages.Param.getDefaultInstance();
       }
       
       public boolean isInitialized() {
         return result.isInitialized();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param build() {
+      public FirewallConfigMessages.Param build() {
         if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return buildPartial();
       }
       
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param buildParsed()
+      private FirewallConfigMessages.Param buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
           throw newUninitializedMessageException(
@@ -1676,18 +1676,18 @@ public final class FirewallConfigMessages {
         return buildPartial();
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param buildPartial() {
+      public FirewallConfigMessages.Param buildPartial() {
         if (result == null) {
           throw new IllegalStateException(
             "build() has already been called on this Builder.");
         }
-        edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param returnMe = result;
+        FirewallConfigMessages.Param returnMe = result;
         result = null;
         return returnMe;
       }
       
-      public Builder mergeFrom(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param other) {
-        if (other == edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param.getDefaultInstance()) return this;
+      public Builder mergeFrom(FirewallConfigMessages.Param other) {
+        if (other == FirewallConfigMessages.Param.getDefaultInstance()) return this;
         if (other.hasConstantValue()) {
           mergeConstantValue(other.getConstantValue());
         }
@@ -1716,7 +1716,7 @@ public final class FirewallConfigMessages {
               break;
             }
             case 10: {
-              edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue.Builder subBuilder = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue.newBuilder();
+              FirewallConfigMessages.SensorValue.Builder subBuilder = FirewallConfigMessages.SensorValue.newBuilder();
               if (hasConstantValue()) {
                 subBuilder.mergeFrom(getConstantValue());
               }
@@ -1729,7 +1729,7 @@ public final class FirewallConfigMessages {
               break;
             }
             case 26: {
-              edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.Builder subBuilder = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.newBuilder();
+              FirewallConfigMessages.Perturb.Builder subBuilder = FirewallConfigMessages.Perturb.newBuilder();
               if (hasPerturb()) {
                 subBuilder.mergeFrom(getPerturb());
               }
@@ -1742,14 +1742,14 @@ public final class FirewallConfigMessages {
       }
       
       
-      // optional .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.SensorValue constantValue = 1;
+      // optional .SensorValue constantValue = 1;
       public boolean hasConstantValue() {
         return result.hasConstantValue();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue getConstantValue() {
+      public FirewallConfigMessages.SensorValue getConstantValue() {
         return result.getConstantValue();
       }
-      public Builder setConstantValue(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue value) {
+      public Builder setConstantValue(FirewallConfigMessages.SensorValue value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1757,16 +1757,16 @@ public final class FirewallConfigMessages {
         result.constantValue_ = value;
         return this;
       }
-      public Builder setConstantValue(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue.Builder builderForValue) {
+      public Builder setConstantValue(FirewallConfigMessages.SensorValue.Builder builderForValue) {
         result.hasConstantValue = true;
         result.constantValue_ = builderForValue.build();
         return this;
       }
-      public Builder mergeConstantValue(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue value) {
+      public Builder mergeConstantValue(FirewallConfigMessages.SensorValue value) {
         if (result.hasConstantValue() &&
-            result.constantValue_ != edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue.getDefaultInstance()) {
+            result.constantValue_ != FirewallConfigMessages.SensorValue.getDefaultInstance()) {
           result.constantValue_ =
-            edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue.newBuilder(result.constantValue_).mergeFrom(value).buildPartial();
+            FirewallConfigMessages.SensorValue.newBuilder(result.constantValue_).mergeFrom(value).buildPartial();
         } else {
           result.constantValue_ = value;
         }
@@ -1775,7 +1775,7 @@ public final class FirewallConfigMessages {
       }
       public Builder clearConstantValue() {
         result.hasConstantValue = false;
-        result.constantValue_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.SensorValue.getDefaultInstance();
+        result.constantValue_ = FirewallConfigMessages.SensorValue.getDefaultInstance();
         return this;
       }
       
@@ -1797,14 +1797,14 @@ public final class FirewallConfigMessages {
         return this;
       }
       
-      // optional .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Perturb perturb = 3;
+      // optional .Perturb perturb = 3;
       public boolean hasPerturb() {
         return result.hasPerturb();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb getPerturb() {
+      public FirewallConfigMessages.Perturb getPerturb() {
         return result.getPerturb();
       }
-      public Builder setPerturb(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb value) {
+      public Builder setPerturb(FirewallConfigMessages.Perturb value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1812,16 +1812,16 @@ public final class FirewallConfigMessages {
         result.perturb_ = value;
         return this;
       }
-      public Builder setPerturb(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.Builder builderForValue) {
+      public Builder setPerturb(FirewallConfigMessages.Perturb.Builder builderForValue) {
         result.hasPerturb = true;
         result.perturb_ = builderForValue.build();
         return this;
       }
-      public Builder mergePerturb(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb value) {
+      public Builder mergePerturb(FirewallConfigMessages.Perturb value) {
         if (result.hasPerturb() &&
-            result.perturb_ != edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.getDefaultInstance()) {
+            result.perturb_ != FirewallConfigMessages.Perturb.getDefaultInstance()) {
           result.perturb_ =
-            edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.newBuilder(result.perturb_).mergeFrom(value).buildPartial();
+            FirewallConfigMessages.Perturb.newBuilder(result.perturb_).mergeFrom(value).buildPartial();
         } else {
           result.perturb_ = value;
         }
@@ -1830,20 +1830,20 @@ public final class FirewallConfigMessages {
       }
       public Builder clearPerturb() {
         result.hasPerturb = false;
-        result.perturb_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Perturb.getDefaultInstance();
+        result.perturb_ = FirewallConfigMessages.Perturb.getDefaultInstance();
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Param)
+      // @@protoc_insertion_point(builder_scope:Param)
     }
     
     static {
       defaultInstance = new Param(true);
-      edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.internalForceInit();
+      FirewallConfigMessages.internalForceInit();
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Param)
+    // @@protoc_insertion_point(class_scope:Param)
   }
   
   public static final class DateTime extends
@@ -1964,41 +1964,41 @@ public final class FirewallConfigMessages {
       return size;
     }
     
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime parseFrom(
+    public static FirewallConfigMessages.DateTime parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime parseFrom(
+    public static FirewallConfigMessages.DateTime parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime parseFrom(byte[] data)
+    public static FirewallConfigMessages.DateTime parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime parseFrom(
+    public static FirewallConfigMessages.DateTime parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime parseFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.DateTime parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime parseFrom(
+    public static FirewallConfigMessages.DateTime parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime parseDelimitedFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.DateTime parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -2007,7 +2007,7 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime parseDelimitedFrom(
+    public static FirewallConfigMessages.DateTime parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2018,12 +2018,12 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime parseFrom(
+    public static FirewallConfigMessages.DateTime parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime parseFrom(
+    public static FirewallConfigMessages.DateTime parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2033,26 +2033,26 @@ public final class FirewallConfigMessages {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime prototype) {
+    public static Builder newBuilder(FirewallConfigMessages.DateTime prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
     
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime, Builder> {
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime result;
+          FirewallConfigMessages.DateTime, Builder> {
+      private FirewallConfigMessages.DateTime result;
       
-      // Construct using edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime.newBuilder()
+      // Construct using FirewallConfigMessages.DateTime.newBuilder()
       private Builder() {}
       
       private static Builder create() {
         Builder builder = new Builder();
-        builder.result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime();
+        builder.result = new FirewallConfigMessages.DateTime();
         return builder;
       }
       
-      protected edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime internalGetResult() {
+      protected FirewallConfigMessages.DateTime internalGetResult() {
         return result;
       }
       
@@ -2061,7 +2061,7 @@ public final class FirewallConfigMessages {
           throw new IllegalStateException(
             "Cannot call clear() after build().");
         }
-        result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime();
+        result = new FirewallConfigMessages.DateTime();
         return this;
       }
       
@@ -2069,21 +2069,21 @@ public final class FirewallConfigMessages {
         return create().mergeFrom(result);
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime getDefaultInstanceForType() {
-        return edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime.getDefaultInstance();
+      public FirewallConfigMessages.DateTime getDefaultInstanceForType() {
+        return FirewallConfigMessages.DateTime.getDefaultInstance();
       }
       
       public boolean isInitialized() {
         return result.isInitialized();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime build() {
+      public FirewallConfigMessages.DateTime build() {
         if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return buildPartial();
       }
       
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime buildParsed()
+      private FirewallConfigMessages.DateTime buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
           throw newUninitializedMessageException(
@@ -2092,7 +2092,7 @@ public final class FirewallConfigMessages {
         return buildPartial();
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime buildPartial() {
+      public FirewallConfigMessages.DateTime buildPartial() {
         if (result == null) {
           throw new IllegalStateException(
             "build() has already been called on this Builder.");
@@ -2101,13 +2101,13 @@ public final class FirewallConfigMessages {
           result.dayOfWeek_ =
             java.util.Collections.unmodifiableList(result.dayOfWeek_);
         }
-        edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime returnMe = result;
+        FirewallConfigMessages.DateTime returnMe = result;
         result = null;
         return returnMe;
       }
       
-      public Builder mergeFrom(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime other) {
-        if (other == edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime.getDefaultInstance()) return this;
+      public Builder mergeFrom(FirewallConfigMessages.DateTime other) {
+        if (other == FirewallConfigMessages.DateTime.getDefaultInstance()) return this;
         if (!other.dayOfWeek_.isEmpty()) {
           if (result.dayOfWeek_.isEmpty()) {
             result.dayOfWeek_ = new java.util.ArrayList<java.lang.Integer>();
@@ -2284,16 +2284,16 @@ public final class FirewallConfigMessages {
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.DateTime)
+      // @@protoc_insertion_point(builder_scope:DateTime)
     }
     
     static {
       defaultInstance = new DateTime(true);
-      edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.internalForceInit();
+      FirewallConfigMessages.internalForceInit();
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.DateTime)
+    // @@protoc_insertion_point(class_scope:DateTime)
   }
   
   public static final class Action extends
@@ -2317,7 +2317,7 @@ public final class FirewallConfigMessages {
         implements com.google.protobuf.Internal.EnumLite {
       ACTION_SUPPRESS(0, 1),
       ACTION_CONSTANT(1, 2),
-      ACTION_DELAY(2, 3),
+      ACTION_PLAYBACK(2, 3),
       ACTION_PERTURB(3, 4),
       ACTION_PASSTHROUGH(4, 5),
       ;
@@ -2329,7 +2329,7 @@ public final class FirewallConfigMessages {
         switch (value) {
           case 1: return ACTION_SUPPRESS;
           case 2: return ACTION_CONSTANT;
-          case 3: return ACTION_DELAY;
+          case 3: return ACTION_PLAYBACK;
           case 4: return ACTION_PERTURB;
           case 5: return ACTION_PASSTHROUGH;
           default: return null;
@@ -2355,26 +2355,26 @@ public final class FirewallConfigMessages {
         this.value = value;
       }
       
-      // @@protoc_insertion_point(enum_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Action.ActionType)
+      // @@protoc_insertion_point(enum_scope:Action.ActionType)
     }
     
-    // required .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Action.ActionType actionType = 1;
+    // required .Action.ActionType actionType = 1;
     public static final int ACTIONTYPE_FIELD_NUMBER = 1;
     private boolean hasActionType;
-    private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.ActionType actionType_;
+    private FirewallConfigMessages.Action.ActionType actionType_;
     public boolean hasActionType() { return hasActionType; }
-    public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.ActionType getActionType() { return actionType_; }
+    public FirewallConfigMessages.Action.ActionType getActionType() { return actionType_; }
     
-    // optional .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Param param = 2;
+    // optional .Param param = 2;
     public static final int PARAM_FIELD_NUMBER = 2;
     private boolean hasParam;
-    private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param param_;
+    private FirewallConfigMessages.Param param_;
     public boolean hasParam() { return hasParam; }
-    public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param getParam() { return param_; }
+    public FirewallConfigMessages.Param getParam() { return param_; }
     
     private void initFields() {
-      actionType_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.ActionType.ACTION_SUPPRESS;
-      param_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param.getDefaultInstance();
+      actionType_ = FirewallConfigMessages.Action.ActionType.ACTION_SUPPRESS;
+      param_ = FirewallConfigMessages.Param.getDefaultInstance();
     }
     public final boolean isInitialized() {
       if (!hasActionType) return false;
@@ -2413,41 +2413,41 @@ public final class FirewallConfigMessages {
       return size;
     }
     
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action parseFrom(
+    public static FirewallConfigMessages.Action parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action parseFrom(
+    public static FirewallConfigMessages.Action parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action parseFrom(byte[] data)
+    public static FirewallConfigMessages.Action parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action parseFrom(
+    public static FirewallConfigMessages.Action parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action parseFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.Action parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action parseFrom(
+    public static FirewallConfigMessages.Action parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action parseDelimitedFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.Action parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -2456,7 +2456,7 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action parseDelimitedFrom(
+    public static FirewallConfigMessages.Action parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2467,12 +2467,12 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action parseFrom(
+    public static FirewallConfigMessages.Action parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action parseFrom(
+    public static FirewallConfigMessages.Action parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2482,26 +2482,26 @@ public final class FirewallConfigMessages {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action prototype) {
+    public static Builder newBuilder(FirewallConfigMessages.Action prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
     
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action, Builder> {
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action result;
+          FirewallConfigMessages.Action, Builder> {
+      private FirewallConfigMessages.Action result;
       
-      // Construct using edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.newBuilder()
+      // Construct using FirewallConfigMessages.Action.newBuilder()
       private Builder() {}
       
       private static Builder create() {
         Builder builder = new Builder();
-        builder.result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action();
+        builder.result = new FirewallConfigMessages.Action();
         return builder;
       }
       
-      protected edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action internalGetResult() {
+      protected FirewallConfigMessages.Action internalGetResult() {
         return result;
       }
       
@@ -2510,7 +2510,7 @@ public final class FirewallConfigMessages {
           throw new IllegalStateException(
             "Cannot call clear() after build().");
         }
-        result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action();
+        result = new FirewallConfigMessages.Action();
         return this;
       }
       
@@ -2518,21 +2518,21 @@ public final class FirewallConfigMessages {
         return create().mergeFrom(result);
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action getDefaultInstanceForType() {
-        return edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.getDefaultInstance();
+      public FirewallConfigMessages.Action getDefaultInstanceForType() {
+        return FirewallConfigMessages.Action.getDefaultInstance();
       }
       
       public boolean isInitialized() {
         return result.isInitialized();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action build() {
+      public FirewallConfigMessages.Action build() {
         if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return buildPartial();
       }
       
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action buildParsed()
+      private FirewallConfigMessages.Action buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
           throw newUninitializedMessageException(
@@ -2541,18 +2541,18 @@ public final class FirewallConfigMessages {
         return buildPartial();
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action buildPartial() {
+      public FirewallConfigMessages.Action buildPartial() {
         if (result == null) {
           throw new IllegalStateException(
             "build() has already been called on this Builder.");
         }
-        edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action returnMe = result;
+        FirewallConfigMessages.Action returnMe = result;
         result = null;
         return returnMe;
       }
       
-      public Builder mergeFrom(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action other) {
-        if (other == edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.getDefaultInstance()) return this;
+      public Builder mergeFrom(FirewallConfigMessages.Action other) {
+        if (other == FirewallConfigMessages.Action.getDefaultInstance()) return this;
         if (other.hasActionType()) {
           setActionType(other.getActionType());
         }
@@ -2579,14 +2579,14 @@ public final class FirewallConfigMessages {
             }
             case 8: {
               int rawValue = input.readEnum();
-              edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.ActionType value = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.ActionType.valueOf(rawValue);
+              FirewallConfigMessages.Action.ActionType value = FirewallConfigMessages.Action.ActionType.valueOf(rawValue);
               if (value != null) {
                 setActionType(value);
               }
               break;
             }
             case 18: {
-              edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param.Builder subBuilder = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param.newBuilder();
+              FirewallConfigMessages.Param.Builder subBuilder = FirewallConfigMessages.Param.newBuilder();
               if (hasParam()) {
                 subBuilder.mergeFrom(getParam());
               }
@@ -2599,14 +2599,14 @@ public final class FirewallConfigMessages {
       }
       
       
-      // required .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Action.ActionType actionType = 1;
+      // required .Action.ActionType actionType = 1;
       public boolean hasActionType() {
         return result.hasActionType();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.ActionType getActionType() {
+      public FirewallConfigMessages.Action.ActionType getActionType() {
         return result.getActionType();
       }
-      public Builder setActionType(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.ActionType value) {
+      public Builder setActionType(FirewallConfigMessages.Action.ActionType value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -2616,18 +2616,18 @@ public final class FirewallConfigMessages {
       }
       public Builder clearActionType() {
         result.hasActionType = false;
-        result.actionType_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.ActionType.ACTION_SUPPRESS;
+        result.actionType_ = FirewallConfigMessages.Action.ActionType.ACTION_SUPPRESS;
         return this;
       }
       
-      // optional .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Param param = 2;
+      // optional .Param param = 2;
       public boolean hasParam() {
         return result.hasParam();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param getParam() {
+      public FirewallConfigMessages.Param getParam() {
         return result.getParam();
       }
-      public Builder setParam(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param value) {
+      public Builder setParam(FirewallConfigMessages.Param value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -2635,16 +2635,16 @@ public final class FirewallConfigMessages {
         result.param_ = value;
         return this;
       }
-      public Builder setParam(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param.Builder builderForValue) {
+      public Builder setParam(FirewallConfigMessages.Param.Builder builderForValue) {
         result.hasParam = true;
         result.param_ = builderForValue.build();
         return this;
       }
-      public Builder mergeParam(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param value) {
+      public Builder mergeParam(FirewallConfigMessages.Param value) {
         if (result.hasParam() &&
-            result.param_ != edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param.getDefaultInstance()) {
+            result.param_ != FirewallConfigMessages.Param.getDefaultInstance()) {
           result.param_ =
-            edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param.newBuilder(result.param_).mergeFrom(value).buildPartial();
+            FirewallConfigMessages.Param.newBuilder(result.param_).mergeFrom(value).buildPartial();
         } else {
           result.param_ = value;
         }
@@ -2653,20 +2653,20 @@ public final class FirewallConfigMessages {
       }
       public Builder clearParam() {
         result.hasParam = false;
-        result.param_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Param.getDefaultInstance();
+        result.param_ = FirewallConfigMessages.Param.getDefaultInstance();
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Action)
+      // @@protoc_insertion_point(builder_scope:Action)
     }
     
     static {
       defaultInstance = new Action(true);
-      edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.internalForceInit();
+      FirewallConfigMessages.internalForceInit();
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Action)
+    // @@protoc_insertion_point(class_scope:Action)
   }
   
   public static final class Rule extends
@@ -2714,23 +2714,23 @@ public final class FirewallConfigMessages {
     public boolean hasPkgUid() { return hasPkgUid; }
     public int getPkgUid() { return pkgUid_; }
     
-    // optional .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.DateTime dateTime = 5;
+    // optional .DateTime dateTime = 5;
     public static final int DATETIME_FIELD_NUMBER = 5;
     private boolean hasDateTime;
-    private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime dateTime_;
+    private FirewallConfigMessages.DateTime dateTime_;
     public boolean hasDateTime() { return hasDateTime; }
-    public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime getDateTime() { return dateTime_; }
+    public FirewallConfigMessages.DateTime getDateTime() { return dateTime_; }
     
-    // required .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Action action = 6;
+    // required .Action action = 6;
     public static final int ACTION_FIELD_NUMBER = 6;
     private boolean hasAction;
-    private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action action_;
+    private FirewallConfigMessages.Action action_;
     public boolean hasAction() { return hasAction; }
-    public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action getAction() { return action_; }
+    public FirewallConfigMessages.Action getAction() { return action_; }
     
     private void initFields() {
-      dateTime_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime.getDefaultInstance();
-      action_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.getDefaultInstance();
+      dateTime_ = FirewallConfigMessages.DateTime.getDefaultInstance();
+      action_ = FirewallConfigMessages.Action.getDefaultInstance();
     }
     public final boolean isInitialized() {
       if (!hasRuleName) return false;
@@ -2799,41 +2799,41 @@ public final class FirewallConfigMessages {
       return size;
     }
     
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule parseFrom(
+    public static FirewallConfigMessages.Rule parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule parseFrom(
+    public static FirewallConfigMessages.Rule parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule parseFrom(byte[] data)
+    public static FirewallConfigMessages.Rule parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule parseFrom(
+    public static FirewallConfigMessages.Rule parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule parseFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.Rule parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule parseFrom(
+    public static FirewallConfigMessages.Rule parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule parseDelimitedFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.Rule parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -2842,7 +2842,7 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule parseDelimitedFrom(
+    public static FirewallConfigMessages.Rule parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2853,12 +2853,12 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule parseFrom(
+    public static FirewallConfigMessages.Rule parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule parseFrom(
+    public static FirewallConfigMessages.Rule parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2868,26 +2868,26 @@ public final class FirewallConfigMessages {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule prototype) {
+    public static Builder newBuilder(FirewallConfigMessages.Rule prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
     
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule, Builder> {
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule result;
+          FirewallConfigMessages.Rule, Builder> {
+      private FirewallConfigMessages.Rule result;
       
-      // Construct using edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule.newBuilder()
+      // Construct using FirewallConfigMessages.Rule.newBuilder()
       private Builder() {}
       
       private static Builder create() {
         Builder builder = new Builder();
-        builder.result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule();
+        builder.result = new FirewallConfigMessages.Rule();
         return builder;
       }
       
-      protected edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule internalGetResult() {
+      protected FirewallConfigMessages.Rule internalGetResult() {
         return result;
       }
       
@@ -2896,7 +2896,7 @@ public final class FirewallConfigMessages {
           throw new IllegalStateException(
             "Cannot call clear() after build().");
         }
-        result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule();
+        result = new FirewallConfigMessages.Rule();
         return this;
       }
       
@@ -2904,21 +2904,21 @@ public final class FirewallConfigMessages {
         return create().mergeFrom(result);
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule getDefaultInstanceForType() {
-        return edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule.getDefaultInstance();
+      public FirewallConfigMessages.Rule getDefaultInstanceForType() {
+        return FirewallConfigMessages.Rule.getDefaultInstance();
       }
       
       public boolean isInitialized() {
         return result.isInitialized();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule build() {
+      public FirewallConfigMessages.Rule build() {
         if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return buildPartial();
       }
       
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule buildParsed()
+      private FirewallConfigMessages.Rule buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
           throw newUninitializedMessageException(
@@ -2927,18 +2927,18 @@ public final class FirewallConfigMessages {
         return buildPartial();
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule buildPartial() {
+      public FirewallConfigMessages.Rule buildPartial() {
         if (result == null) {
           throw new IllegalStateException(
             "build() has already been called on this Builder.");
         }
-        edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule returnMe = result;
+        FirewallConfigMessages.Rule returnMe = result;
         result = null;
         return returnMe;
       }
       
-      public Builder mergeFrom(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule other) {
-        if (other == edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule.getDefaultInstance()) return this;
+      public Builder mergeFrom(FirewallConfigMessages.Rule other) {
+        if (other == FirewallConfigMessages.Rule.getDefaultInstance()) return this;
         if (other.hasRuleName()) {
           setRuleName(other.getRuleName());
         }
@@ -2992,7 +2992,7 @@ public final class FirewallConfigMessages {
               break;
             }
             case 42: {
-              edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime.Builder subBuilder = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime.newBuilder();
+              FirewallConfigMessages.DateTime.Builder subBuilder = FirewallConfigMessages.DateTime.newBuilder();
               if (hasDateTime()) {
                 subBuilder.mergeFrom(getDateTime());
               }
@@ -3001,7 +3001,7 @@ public final class FirewallConfigMessages {
               break;
             }
             case 50: {
-              edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.Builder subBuilder = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.newBuilder();
+              FirewallConfigMessages.Action.Builder subBuilder = FirewallConfigMessages.Action.newBuilder();
               if (hasAction()) {
                 subBuilder.mergeFrom(getAction());
               }
@@ -3092,14 +3092,14 @@ public final class FirewallConfigMessages {
         return this;
       }
       
-      // optional .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.DateTime dateTime = 5;
+      // optional .DateTime dateTime = 5;
       public boolean hasDateTime() {
         return result.hasDateTime();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime getDateTime() {
+      public FirewallConfigMessages.DateTime getDateTime() {
         return result.getDateTime();
       }
-      public Builder setDateTime(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime value) {
+      public Builder setDateTime(FirewallConfigMessages.DateTime value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -3107,16 +3107,16 @@ public final class FirewallConfigMessages {
         result.dateTime_ = value;
         return this;
       }
-      public Builder setDateTime(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime.Builder builderForValue) {
+      public Builder setDateTime(FirewallConfigMessages.DateTime.Builder builderForValue) {
         result.hasDateTime = true;
         result.dateTime_ = builderForValue.build();
         return this;
       }
-      public Builder mergeDateTime(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime value) {
+      public Builder mergeDateTime(FirewallConfigMessages.DateTime value) {
         if (result.hasDateTime() &&
-            result.dateTime_ != edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime.getDefaultInstance()) {
+            result.dateTime_ != FirewallConfigMessages.DateTime.getDefaultInstance()) {
           result.dateTime_ =
-            edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime.newBuilder(result.dateTime_).mergeFrom(value).buildPartial();
+            FirewallConfigMessages.DateTime.newBuilder(result.dateTime_).mergeFrom(value).buildPartial();
         } else {
           result.dateTime_ = value;
         }
@@ -3125,18 +3125,18 @@ public final class FirewallConfigMessages {
       }
       public Builder clearDateTime() {
         result.hasDateTime = false;
-        result.dateTime_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.DateTime.getDefaultInstance();
+        result.dateTime_ = FirewallConfigMessages.DateTime.getDefaultInstance();
         return this;
       }
       
-      // required .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Action action = 6;
+      // required .Action action = 6;
       public boolean hasAction() {
         return result.hasAction();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action getAction() {
+      public FirewallConfigMessages.Action getAction() {
         return result.getAction();
       }
-      public Builder setAction(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action value) {
+      public Builder setAction(FirewallConfigMessages.Action value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -3144,16 +3144,16 @@ public final class FirewallConfigMessages {
         result.action_ = value;
         return this;
       }
-      public Builder setAction(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.Builder builderForValue) {
+      public Builder setAction(FirewallConfigMessages.Action.Builder builderForValue) {
         result.hasAction = true;
         result.action_ = builderForValue.build();
         return this;
       }
-      public Builder mergeAction(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action value) {
+      public Builder mergeAction(FirewallConfigMessages.Action value) {
         if (result.hasAction() &&
-            result.action_ != edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.getDefaultInstance()) {
+            result.action_ != FirewallConfigMessages.Action.getDefaultInstance()) {
           result.action_ =
-            edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.newBuilder(result.action_).mergeFrom(value).buildPartial();
+            FirewallConfigMessages.Action.newBuilder(result.action_).mergeFrom(value).buildPartial();
         } else {
           result.action_ = value;
         }
@@ -3162,20 +3162,20 @@ public final class FirewallConfigMessages {
       }
       public Builder clearAction() {
         result.hasAction = false;
-        result.action_ = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Action.getDefaultInstance();
+        result.action_ = FirewallConfigMessages.Action.getDefaultInstance();
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Rule)
+      // @@protoc_insertion_point(builder_scope:Rule)
     }
     
     static {
       defaultInstance = new Rule(true);
-      edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.internalForceInit();
+      FirewallConfigMessages.internalForceInit();
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Rule)
+    // @@protoc_insertion_point(class_scope:Rule)
   }
   
   public static final class FirewallConfig extends
@@ -3195,22 +3195,22 @@ public final class FirewallConfigMessages {
       return defaultInstance;
     }
     
-    // repeated .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Rule rule = 1;
+    // repeated .Rule rule = 1;
     public static final int RULE_FIELD_NUMBER = 1;
-    private java.util.List<edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule> rule_ =
+    private java.util.List<FirewallConfigMessages.Rule> rule_ =
       java.util.Collections.emptyList();
-    public java.util.List<edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule> getRuleList() {
+    public java.util.List<FirewallConfigMessages.Rule> getRuleList() {
       return rule_;
     }
     public int getRuleCount() { return rule_.size(); }
-    public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule getRule(int index) {
+    public FirewallConfigMessages.Rule getRule(int index) {
       return rule_.get(index);
     }
     
     private void initFields() {
     }
     public final boolean isInitialized() {
-      for (edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule element : getRuleList()) {
+      for (FirewallConfigMessages.Rule element : getRuleList()) {
         if (!element.isInitialized()) return false;
       }
       return true;
@@ -3219,7 +3219,7 @@ public final class FirewallConfigMessages {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      for (edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule element : getRuleList()) {
+      for (FirewallConfigMessages.Rule element : getRuleList()) {
         output.writeMessage(1, element);
       }
     }
@@ -3230,7 +3230,7 @@ public final class FirewallConfigMessages {
       if (size != -1) return size;
     
       size = 0;
-      for (edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule element : getRuleList()) {
+      for (FirewallConfigMessages.Rule element : getRuleList()) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, element);
       }
@@ -3238,41 +3238,41 @@ public final class FirewallConfigMessages {
       return size;
     }
     
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig parseFrom(
+    public static FirewallConfigMessages.FirewallConfig parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig parseFrom(
+    public static FirewallConfigMessages.FirewallConfig parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig parseFrom(byte[] data)
+    public static FirewallConfigMessages.FirewallConfig parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig parseFrom(
+    public static FirewallConfigMessages.FirewallConfig parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig parseFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.FirewallConfig parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig parseFrom(
+    public static FirewallConfigMessages.FirewallConfig parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig parseDelimitedFrom(java.io.InputStream input)
+    public static FirewallConfigMessages.FirewallConfig parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -3281,7 +3281,7 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig parseDelimitedFrom(
+    public static FirewallConfigMessages.FirewallConfig parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3292,12 +3292,12 @@ public final class FirewallConfigMessages {
         return null;
       }
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig parseFrom(
+    public static FirewallConfigMessages.FirewallConfig parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig parseFrom(
+    public static FirewallConfigMessages.FirewallConfig parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3307,26 +3307,26 @@ public final class FirewallConfigMessages {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig prototype) {
+    public static Builder newBuilder(FirewallConfigMessages.FirewallConfig prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
     
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig, Builder> {
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig result;
+          FirewallConfigMessages.FirewallConfig, Builder> {
+      private FirewallConfigMessages.FirewallConfig result;
       
-      // Construct using edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig.newBuilder()
+      // Construct using FirewallConfigMessages.FirewallConfig.newBuilder()
       private Builder() {}
       
       private static Builder create() {
         Builder builder = new Builder();
-        builder.result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig();
+        builder.result = new FirewallConfigMessages.FirewallConfig();
         return builder;
       }
       
-      protected edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig internalGetResult() {
+      protected FirewallConfigMessages.FirewallConfig internalGetResult() {
         return result;
       }
       
@@ -3335,7 +3335,7 @@ public final class FirewallConfigMessages {
           throw new IllegalStateException(
             "Cannot call clear() after build().");
         }
-        result = new edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig();
+        result = new FirewallConfigMessages.FirewallConfig();
         return this;
       }
       
@@ -3343,21 +3343,21 @@ public final class FirewallConfigMessages {
         return create().mergeFrom(result);
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig getDefaultInstanceForType() {
-        return edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig.getDefaultInstance();
+      public FirewallConfigMessages.FirewallConfig getDefaultInstanceForType() {
+        return FirewallConfigMessages.FirewallConfig.getDefaultInstance();
       }
       
       public boolean isInitialized() {
         return result.isInitialized();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig build() {
+      public FirewallConfigMessages.FirewallConfig build() {
         if (result != null && !isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return buildPartial();
       }
       
-      private edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig buildParsed()
+      private FirewallConfigMessages.FirewallConfig buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
         if (!isInitialized()) {
           throw newUninitializedMessageException(
@@ -3366,7 +3366,7 @@ public final class FirewallConfigMessages {
         return buildPartial();
       }
       
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig buildPartial() {
+      public FirewallConfigMessages.FirewallConfig buildPartial() {
         if (result == null) {
           throw new IllegalStateException(
             "build() has already been called on this Builder.");
@@ -3375,16 +3375,16 @@ public final class FirewallConfigMessages {
           result.rule_ =
             java.util.Collections.unmodifiableList(result.rule_);
         }
-        edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig returnMe = result;
+        FirewallConfigMessages.FirewallConfig returnMe = result;
         result = null;
         return returnMe;
       }
       
-      public Builder mergeFrom(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig other) {
-        if (other == edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.FirewallConfig.getDefaultInstance()) return this;
+      public Builder mergeFrom(FirewallConfigMessages.FirewallConfig other) {
+        if (other == FirewallConfigMessages.FirewallConfig.getDefaultInstance()) return this;
         if (!other.rule_.isEmpty()) {
           if (result.rule_.isEmpty()) {
-            result.rule_ = new java.util.ArrayList<edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule>();
+            result.rule_ = new java.util.ArrayList<FirewallConfigMessages.Rule>();
           }
           result.rule_.addAll(other.rule_);
         }
@@ -3407,7 +3407,7 @@ public final class FirewallConfigMessages {
               break;
             }
             case 10: {
-              edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule.Builder subBuilder = edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule.newBuilder();
+              FirewallConfigMessages.Rule.Builder subBuilder = FirewallConfigMessages.Rule.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
               addRule(subBuilder.buildPartial());
               break;
@@ -3417,48 +3417,48 @@ public final class FirewallConfigMessages {
       }
       
       
-      // repeated .edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.Rule rule = 1;
-      public java.util.List<edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule> getRuleList() {
+      // repeated .Rule rule = 1;
+      public java.util.List<FirewallConfigMessages.Rule> getRuleList() {
         return java.util.Collections.unmodifiableList(result.rule_);
       }
       public int getRuleCount() {
         return result.getRuleCount();
       }
-      public edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule getRule(int index) {
+      public FirewallConfigMessages.Rule getRule(int index) {
         return result.getRule(index);
       }
-      public Builder setRule(int index, edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule value) {
+      public Builder setRule(int index, FirewallConfigMessages.Rule value) {
         if (value == null) {
           throw new NullPointerException();
         }
         result.rule_.set(index, value);
         return this;
       }
-      public Builder setRule(int index, edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule.Builder builderForValue) {
+      public Builder setRule(int index, FirewallConfigMessages.Rule.Builder builderForValue) {
         result.rule_.set(index, builderForValue.build());
         return this;
       }
-      public Builder addRule(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule value) {
+      public Builder addRule(FirewallConfigMessages.Rule value) {
         if (value == null) {
           throw new NullPointerException();
         }
         if (result.rule_.isEmpty()) {
-          result.rule_ = new java.util.ArrayList<edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule>();
+          result.rule_ = new java.util.ArrayList<FirewallConfigMessages.Rule>();
         }
         result.rule_.add(value);
         return this;
       }
-      public Builder addRule(edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule.Builder builderForValue) {
+      public Builder addRule(FirewallConfigMessages.Rule.Builder builderForValue) {
         if (result.rule_.isEmpty()) {
-          result.rule_ = new java.util.ArrayList<edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule>();
+          result.rule_ = new java.util.ArrayList<FirewallConfigMessages.Rule>();
         }
         result.rule_.add(builderForValue.build());
         return this;
       }
       public Builder addAllRule(
-          java.lang.Iterable<? extends edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule> values) {
+          java.lang.Iterable<? extends FirewallConfigMessages.Rule> values) {
         if (result.rule_.isEmpty()) {
-          result.rule_ = new java.util.ArrayList<edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.Rule>();
+          result.rule_ = new java.util.ArrayList<FirewallConfigMessages.Rule>();
         }
         super.addAll(values, result.rule_);
         return this;
@@ -3468,16 +3468,16 @@ public final class FirewallConfigMessages {
         return this;
       }
       
-      // @@protoc_insertion_point(builder_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfig)
+      // @@protoc_insertion_point(builder_scope:FirewallConfig)
     }
     
     static {
       defaultInstance = new FirewallConfig(true);
-      edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfigMessages.internalForceInit();
+      FirewallConfigMessages.internalForceInit();
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:edu.ucla.ee.nesl.privacyfilter.filtermanager.io.protobuf.FirewallConfig)
+    // @@protoc_insertion_point(class_scope:FirewallConfig)
   }
   
   

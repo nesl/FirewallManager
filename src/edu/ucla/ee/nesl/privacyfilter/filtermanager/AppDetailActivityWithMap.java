@@ -132,7 +132,7 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
         			//activity.getSupportFragmentManager().beginTransaction().remove(fragment).add(R.id.app_detail_container, fragment).commit();
                     return fragment0;
                 case 1:
-                	return new ExternalContextFragment();
+                	return new PlaybackFragment();
                 	
                 case 2:
                 	return new MapMarkerFragment();
