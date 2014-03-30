@@ -11,6 +11,7 @@ public class SensorType {
 	private int dbId; // the sensors ID in our database
 	private int androidId; // the sensor type constant according to android
 	private String name = null;
+	private String file = null;
 	
 	private static class AndroidSensorIdData { // {{{
 		protected String sensorName;
@@ -161,4 +162,10 @@ public class SensorType {
 	public float[] getDefaultValues () { // {{{
 		return androidSensorIdData[androidId].defaultValues;
 	} // }}}
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
 }

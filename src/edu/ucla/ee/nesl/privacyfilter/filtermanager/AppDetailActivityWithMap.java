@@ -16,6 +16,7 @@
 
 package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -49,7 +50,8 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
      */
     ViewPager mViewPager;
 
-    public void onCreate(Bundle savedInstanceState) {
+    @SuppressLint("NewApi")
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         activity = this;
@@ -132,7 +134,7 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
         			//activity.getSupportFragmentManager().beginTransaction().remove(fragment).add(R.id.app_detail_container, fragment).commit();
                     return fragment0;
                 case 1:
-                	return new PlaybackFragment();
+                	return new PlaybackListFragment();
                 	
                 case 2:
                 	return new MapMarkerFragment();
@@ -153,7 +155,7 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
             	return "Rule Config";
             }
             else if (position == 1) {
-            	return "External Context";
+            	return "Playback Setting";
             }
             else {
             	return "Map";
