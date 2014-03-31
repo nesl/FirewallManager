@@ -48,11 +48,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AppListActivity" />
         </activity>
-         <activity android:name="ar.com.daidalos.afiledialog.FileChooserActivity" />
+        <activity android:name="ar.com.daidalos.afiledialog.FileChooserActivity" />
+         
+        <service android:name="edu.ucla.ee.nesl.privacyfilter.filtermanager.playback.PlaybackService"/>
         
         <meta-data
 		    android:name="com.google.android.maps.v2.API_KEY"
-		    android:value="XXX"/>
+		    android:value="AIzaSyAX-j0qhNBKPpPSeItZOxc_hq1mixxbXUo"/>
     </application>
 
 </manifest>

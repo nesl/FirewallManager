@@ -33,7 +33,7 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
 	
 	private static AppDetailActivityWithMap activity;
 	private static AppDetailFragment fragment0 = null;
-//	private static ExternalContextFragment fragment1 = null;
+//	private static PlaybackListFragment fragment1 = null;
 //	private static MapMarkerFragment fragment2 = null;
 
     /**
@@ -124,8 +124,6 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
         public Fragment getItem(int i) {
             switch (i) {
                 case 0:
-                    // The first section of the app is the most interesting -- it offers
-                    // a launchpad into the other demonstrations in this example application
             		Bundle arguments = new Bundle();
         			arguments.putString(AppDetailFragment.ARG_APP_STR, activity.getIntent().getStringExtra(AppDetailFragment.ARG_APP_STR));
         			fragment0 = new AppDetailFragment();
@@ -133,11 +131,9 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
         			fragment0.setContext(activity);        			
         			//activity.getSupportFragmentManager().beginTransaction().remove(fragment).add(R.id.app_detail_container, fragment).commit();
                     return fragment0;
-                case 1:
-                	return new PlaybackListFragment();
                 	
-                case 2:
-                	return new MapMarkerFragment();
+                case 1:
+                	return new DummySectionFragment();
                 
                 default:
                 	return null;
@@ -146,7 +142,7 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
 
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
         @Override
@@ -155,7 +151,7 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
             	return "Rule Config";
             }
             else if (position == 1) {
-            	return "Playback Setting";
+            	return "Map";
             }
             else {
             	return "Map";
@@ -174,7 +170,7 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_map, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_dummy, container, false);
             return rootView;
         }
     }

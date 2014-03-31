@@ -12,7 +12,7 @@
 		android:layout_width="wrap_content"
 		android:paddingLeft="10dp"
 		android:textSize="24sp"
-		android:paddingBottom="4dp"
+		android:paddingBottom="1dp"
 		android:paddingTop="4dp"
 		android:textColor="#0000ff"
 	/>
@@ -23,21 +23,28 @@
 			android:id="@+id/playback_list_entry_filename"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
-			android:paddingTop="10dp"
+			android:paddingTop="3dp"
 			android:paddingLeft="20dp"
 			android:textSize="16sp"
 			android:textColor="#ff0000"
 			android:layout_centerInParent="true"
 		/>
 	</RelativeLayout>
-	<RelativeLayout
+	<LinearLayout
+	    android:orientation="horizontal"
 	    android:layout_width="fill_parent" 
 	    android:layout_height="fill_parent">
 		<Button
-			android:id="@+id/loc_list_entry_select"
+			android:id="@+id/playback_list_entry_select"
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"	
-			android:layout_centerInParent="true"
+			android:gravity="left"
 		/>
-	</RelativeLayout>
+		<Button
+			android:id="@+id/playback_list_entry_cancel"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"	
+			android:gravity="right"
+		/>
+	</LinearLayout>
 </LinearLayout>

@@ -121,6 +121,7 @@ public class AppDetailFragment extends Fragment {
 		private final FirewallConfigMessages.Action.ActionType[] PROTOBUF_ACTIONS = {
 			FirewallConfigMessages.Action.ActionType.ACTION_PASSTHROUGH,
 			FirewallConfigMessages.Action.ActionType.ACTION_SUPPRESS,
+			FirewallConfigMessages.Action.ActionType.ACTION_PLAYBACK,
 			FirewallConfigMessages.Action.ActionType.ACTION_CONSTANT,
 			FirewallConfigMessages.Action.ActionType.ACTION_PERTURB,
 		};
@@ -237,9 +238,9 @@ public class AppDetailFragment extends Fragment {
 						case 1: // suppress
 							timingView.setVisibility(View.VISIBLE);
 							locationView.setVisibility(View.VISIBLE);
-							externalView.setVisibility(View.VISIBLE);
+							//externalView.setVisibility(View.VISIBLE);
 							break;
-						case 2: // constant
+						case 3: // constant
 							if (sensorType.getAndroidId() == SensorType.GPS_ID) {
 								constantLocationView.setVisibility(View.VISIBLE);
 							}
@@ -250,22 +251,18 @@ public class AppDetailFragment extends Fragment {
 							}
 							timingView.setVisibility(View.VISIBLE);
 							locationView.setVisibility(View.VISIBLE);
-							externalView.setVisibility(View.VISIBLE);
+							//externalView.setVisibility(View.VISIBLE);
 							break;
-//						case 3: // delay
-//							timingView.setVisibility(View.VISIBLE);
-//							locationView.setVisibility(View.VISIBLE);
-//							externalView.setVisibility(View.VISIBLE);
-//							break;
-						//case 4: // perturb
-						//	perturbView.setVisibility(View.VISIBLE);
-						//	timingView.setVisibility(View.VISIBLE);
-						//	break;
-						case 3: // perturb
+						case 2: // playback
+							timingView.setVisibility(View.VISIBLE);
+							locationView.setVisibility(View.VISIBLE);
+							//externalView.setVisibility(View.VISIBLE);
+							break;
+						case 4: // perturb
 							perturbView.setVisibility(View.VISIBLE);
 							timingView.setVisibility(View.VISIBLE);
 							locationView.setVisibility(View.VISIBLE);
-							externalView.setVisibility(View.VISIBLE);
+							//externalView.setVisibility(View.VISIBLE);
 							break;
 					}
 				}
