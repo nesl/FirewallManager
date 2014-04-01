@@ -133,7 +133,7 @@ public class AppDetailActivityWithMap extends FragmentActivity implements Action
                     return fragment0;
                 	
                 case 1:
-                	return new DummySectionFragment();
+                	return new MapMarkerFragment();
                 
                 default:
                 	return null;

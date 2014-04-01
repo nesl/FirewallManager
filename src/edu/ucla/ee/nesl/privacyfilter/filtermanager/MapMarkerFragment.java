@@ -2,6 +2,7 @@ package edu.ucla.ee.nesl.privacyfilter.filtermanager;
 
 import java.util.ArrayList;
 import java.util.Map;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -17,17 +18,19 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapMarkerFragment extends Fragment {
+import edu.ucla.ee.nesl.privacyfilter.filtermanager.MyMapFragment.OnMapReadyListener;
+
+public class MapMarkerFragment extends Fragment implements OnMapReadyListener {
 	private View rootView;
 	private Button button1, button2;
-	private GoogleMap map;
+	private GoogleMap mMap;
 	private MapMarkerFragment fragment;
+	private MyMapFragment mMapFragment;
 	private LatLng newll;
 	private ArrayList<LatLng> mTrace;
 	//private ArrayList<LatLng> mTag;
@@ -63,47 +66,58 @@ public class MapMarkerFragment extends Fragment {
 //		labels.add("Home");
 //		labels.add("Work");
 		
-		map = ((SupportMapFragment)this.getActivity().getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-		
-		map.setOnMapLongClickListener(new OnMapLongClickListener() {
-			@Override
-			public void onMapLongClick(LatLng ll) {
-				newll = ll;
-				AlertDialog.Builder alert = new AlertDialog.Builder(fragment.getActivity());
+		mMapFragment = MyMapFragment.newInstance();
+	    getChildFragmentManager().beginTransaction().replace(R.id.map, mMapFragment).commit();
+	    
 
-				alert.setTitle("New Place");
-				alert.setMessage("Please name this new place:");
-
-				final EditText input = new EditText(fragment.getActivity());
-				alert.setView(input);
-
-				alert.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String value = input.getText().toString();
-								//mTag.add(newll);
-								//labels.add(value);
-								AppListActivity.mapMarkers.put(value, newll);
-								AppListActivity.updateState();
-								mMarker.add(map.addMarker(new MarkerOptions().position(newll).draggable(true).visible(true).title(value)));
-								Log.d("MarkerMap", "add new entry " + value + " lat=" + newll.latitude + " lon=" + newll.longitude);
-								//addItemsOnPlaceSpinner();
-							}
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								// Canceled.
-							}
-						});
-				alert.show();
-			}
-		});
+		//mMap = ((SupportMapFragment)this.getActivity().getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 		setButtonListener();
 		return rootView;
 	}
+	
+    @Override
+    public void onMapReady(GoogleMap map) {
+        mMap = map;
+        if (mMap != null) {
+    		mMap.setOnMapLongClickListener(new OnMapLongClickListener() {
+    			@Override
+    			public void onMapLongClick(LatLng ll) {
+    				newll = ll;
+    				AlertDialog.Builder alert = new AlertDialog.Builder(fragment.getActivity());
+
+    				alert.setTitle("New Place");
+    				alert.setMessage("Please name this new place:");
+
+    				final EditText input = new EditText(fragment.getActivity());
+    				alert.setView(input);
+
+    				alert.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+    							public void onClick(DialogInterface dialog,
+    									int whichButton) {
+    								String value = input.getText().toString();
+    								//mTag.add(newll);
+    								//labels.add(value);
+    								AppListActivity.mapMarkers.put(value, newll);
+    								AppListActivity.updateState();
+    								mMarker.add(mMap.addMarker(new MarkerOptions().position(newll).draggable(true).visible(true).title(value)));
+    								Log.d("MarkerMap", "add new entry " + value + " lat=" + newll.latitude + " lon=" + newll.longitude);
+    								//addItemsOnPlaceSpinner();
+    							}
+    						});
+
+    				alert.setNegativeButton("Cancel",
+    						new DialogInterface.OnClickListener() {
+    							public void onClick(DialogInterface dialog,
+    									int whichButton) {
+    								// Canceled.
+    							}
+    						});
+    				alert.show();
+    			}
+    		});
+        }
+
+    }
 	
 	private void focusOnMarker() {
 		LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -113,7 +127,7 @@ public class MapMarkerFragment extends Fragment {
 		LatLngBounds bounds = builder.build();
 		int padding = 10; // offset from edges of the map in pixels
 		CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-		map.animateCamera(cu);
+		mMap.animateCamera(cu);
 	}
 	
 	private void setButtonListener() {
@@ -123,10 +137,10 @@ public class MapMarkerFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				synchronized (mMarker) {
-					map.clear();
+					mMap.clear();
 					mMarker.clear();
 					for (LatLng ll:mTrace) {
-						mMarker.add(map.addMarker(new MarkerOptions().position(ll).draggable(true).visible(true)));
+						mMarker.add(mMap.addMarker(new MarkerOptions().position(ll).draggable(true).visible(true)));
 					}
 					focusOnMarker();
 				}
@@ -140,10 +154,10 @@ public class MapMarkerFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				synchronized (mMarker) {
-					map.clear();
+					mMap.clear();
 					mMarker.clear();
 					for (Map.Entry<String, LatLng> entry : AppListActivity.mapMarkers.entrySet()) {
-						mMarker.add(map.addMarker(new MarkerOptions().position(entry.getValue()).draggable(true).visible(true).title(entry.getKey())));
+						mMarker.add(mMap.addMarker(new MarkerOptions().position(entry.getValue()).draggable(true).visible(true).title(entry.getKey())));
 					}
 					focusOnMarker();
 				}
